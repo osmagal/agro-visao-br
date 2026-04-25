@@ -1,0 +1,852 @@
+<html><head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <title>Sistema IBGE de Recuperação Automática - SIDRA</title>
+    <link rel="shortcut icon" href="/content/imagens/sidra-icon.ico">
+
+
+
+<link href="/Content/bootstrap.css" rel="stylesheet">
+<link href="/Content/bootstrap-tour.css" rel="stylesheet">
+<link href="/Content/bootstrap-theme.css" rel="stylesheet">
+<link href="/Content/sidra-ui.css" rel="stylesheet">
+<link href="/Content/sidra.css" rel="stylesheet">
+<link href="/Content/perfil/jquery.perfil.login.css" rel="stylesheet">
+<link href="/Content/perfil/jquery.perfil.janelausuario.css" rel="stylesheet">
+<link href="/Content/jquery.janela.css" rel="stylesheet">
+<link href="/Content/jquery.arvore.css" rel="stylesheet">
+<link href="/Content/jquery.jqplot.min.css" rel="stylesheet">
+<link href="/Scripts/nvd3_1_8/nv.d3.css" rel="stylesheet">
+
+    <link href="/Content/home.css" rel="stylesheet">
+<link href="/Content/jquery.janela.css" rel="stylesheet">
+<link href="/Content/jquery.tabela.css" rel="stylesheet">
+<link href="/Content/contato.css" rel="stylesheet">
+
+    <link href="/Content/jquery.ui.componentes.css" rel="stylesheet">
+<link href="/Content/sidra-editor.css" rel="stylesheet">
+<link href="/Content/editor-acervo.css" rel="stylesheet">
+<link href="/Content/jquery.listView.css" rel="stylesheet">
+
+<script src="/Scripts/jquery-2.1.1.js"></script>
+<script src="/Scripts/jquery.tmpl.js"></script>
+<script src="/Scripts/bootstrap.js"></script>
+<script src="/Scripts/bootstrap-tour.js"></script>
+<script src="/Scripts/tour.js"></script>
+<script src="/Scripts/bootbox.min.js"></script>
+<script src="/Scripts/string.js"></script>
+<script src="/Scripts/url.js"></script>
+<script src="/Scripts/editor-async.js"></script>
+<script src="/Scripts/sidra-ui.js"></script>
+<script src="/Scripts/blob.js"></script>
+<script src="/Scripts/base64.js"></script>
+<script src="/Scripts/jszip.min.js"></script>
+<script src="/Scripts/filesaver.js"></script>
+<script src="/Scripts/jquery.sidra.validator.js"></script>
+<script src="/Scripts/perfil/jquery.perfil.janelausuario.js"></script>
+<script src="/Scripts/sidra.js"></script>
+<script src="/Scripts/jquery.janela.js"></script>
+<script src="/Scripts/jquery.exportaSVG.js"></script>
+<script src="/Scripts/jquery.arvore.js"></script>
+<script src="/Scripts/jquery.loading.js"></script>
+<script src="/Scripts/sidra-widget-grafico.js"></script>
+<script src="/Scripts/nvd3_1_8/d3.js"></script>
+<script src="/Scripts/nvd3_1_8/nv.d3.js"></script>
+<script src="/Scripts/jquery.sidra.utils.js?v=1"></script>
+<script src="/Scripts/perfil/jquery.perfil.login.js?v=1"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-YR1L80XXVD"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-YR1L80XXVD');
+
+    </script>
+<style type="text/css" media="all">#barra-brasil div,#barra-brasil a,#barra-brasil ul,#barra-brasil li{margin:0;padding:0;font-size:100%;font-family:inherit;vertical-align:baseline}#barra-brasil ul{list-style:none}#barra-brasil{height:32px;background:#f1f1f1;font-weight:bold;font-size:12px;line-height:32px;font-family:"Open Sans",Arial,Helvetica,sans-serif;border-bottom:1px solid #dfdfdf;box-sizing:content-box}#barra-brasil a{text-decoration:none}body.contraste #barra-brasil,body.contraste .link-vlibras{background:#000 !important}body.contraste #barra-brasil .link-barra,body.contraste #barra-brasil .link-vlibras{color:#FF0 !important;text-decoration:underline}div#wrapper-barra-brasil{position:relative;margin:0 auto;width:100%;max-width:960px;height:100%}#barra-brasil .brasil-flag{float:left;padding:7px 0 6px;width:115px;border-right:2px solid #dfdfdf}#barra-brasil .brasil-flag .link-barra{display:block;padding-left:42px;width:43px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2226%22%20height%3D%2219%22%20viewBox%3D%220%200%20100000%2070000%22%3E%3Cpath%20fill%3D%22%2300923F%22%20d%3D%22M0%200h100000v70000H0z%22%2F%3E%3Cpath%20fill%3D%22%23F8C300%22%20d%3D%22M50000%208500L8500%2035000l41500%2026500%2041500-26500L50000%208500z%22%2F%3E%3Ccircle%20fill%3D%22%2328166F%22%20cx%3D%2249963%22%20cy%3D%2235000%22%20r%3D%2217464%22%2F%3E%3Cpath%20fill%3D%22%23FFF%22%20d%3D%22M39537%2029605c10388%200%2019911%203821%2027238%2010127%20242-850%20421-1726%20532-2622-7597-6162-17265-9862-27770-9862-1821%200-3617%20114-5382%20330-377%20805-695%201642-948%202507%202065-316%204179-480%206330-480z%22%2F%3E%3C%2Fsvg%3E") 8px center no-repeat;text-transform:uppercase;line-height:19px}#barra-brasil #brasil-vlibras{position:absolute;top:0;right:0}#barra-brasil #brasil-vlibras .logo-vlibras{background:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyOSIgaGVpZ2h0PSIyOSI+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTI2Ni4yNTAzOCwtMjMxLjY4NTk0KSI+PHBhdGggZD0ibTI5Mi40IDIzNy44Yy0wLjEgMC0wLjItMC4xLTAuMi0wLjIgMC0xLTEuOC0yLjYtNC4xLTIuNmwtMi41IDAtNC44IDMuNi00LjgtMy42LTIuNSAwYy0yLjQgMC00LjEgMS42LTQuMSAyLjYgMCAwLjEtMC4xIDAuMi0wLjIgMC4yLTAuMSAwLTAuMi0wLjEtMC4yLTAuMiAwLTEuNCAyLjEtMy4xIDQuNi0zLjFsMi40IDAgMC42LTAuNmMwLjEtMC4xIDAuMi0wLjEgMC4zIDBsMy45IDQuNiAzLjktNC42YzAuMS0wLjEgMC4yLTAuMSAwLjMgMGwwLjYgMC42IDIuNCAwYzIuNSAwIDQuNiAxLjcgNC42IDMuMSAwIDAuMS0wLjEgMC4yLTAuMiAwLjJ6bS0zIDEwLjRjLTAuMSAwLjctMC4yIDEtMC4zIDEgMCAwLjEtMC4xIDAuMS0wLjIgMC4xLTAuMSAwLTAuMS0wLjEtMC4xLTAuMiAwIDAgMC4xLTAuMyAwLjItMC45IDAuMS0wLjYtMC4yLTEuMS0wLjItMS4xIDAtMC4xIDAtMC4yIDAuMS0wLjIgMC4xIDAgMC4xIDAgMC4yIDAgMCAwIDAgMCAwIDAuMSAwIDAgMC4zIDAuNiAwLjIgMS4zem0tMSAwLjhjMCAwLjEtMC4xIDAuMS0wLjIgMC4xLTAuMSAwLTAuMS0wLjEtMC4xLTAuMiAwIDAgMC4xLTAuMyAwLjEtMC45IDAtMC42LTAuMy0xLjEtMC4zLTEuMSAwLTAuMSAwLTAuMiAwLjEtMC4yIDAuMSAwIDAuMSAwIDAuMiAwIDAgMCAwIDAgMCAwIDAgMCAwLjMgMC42IDAuMyAxLjMgMCAwLjctMC4xIDEtMC4yIDF6bS0wLjctMC40Yy0wLjMgMS4yLTAuOCAyLjItMC45IDIuNi0wLjIgMC40LTAuMyAwLjktMC4yIDIuMiAwIDEuMyAwIDIuMi0wLjEgMi41IDAgMC4yLTAuMiAwLjMtMC40IDAuMy0wLjIgMC0wLjMtMC4xLTAuNC0wLjQtMC4xLTAuNS0wLjMtMi42LTAuMy0yLjkgMC0wLjItMC4yLTAuNC0wLjMtMC40LTAuMSAwLTAuMiAwLjEtMC4zIDAuNS0wLjIgMC45LTAuNSAzLjEtMC42IDMuNi0wLjEgMC41LTAuMyAwLjYtMC40IDAuNi0wLjEgMC0wLjEgMC0wLjEgMCAwIDAgMCAwIDAgMC0wLjEgMC0wLjQgMC0wLjQtMC40IDAtMC41IDAuNC0zLjUgMC40LTMuOCAwLTAuMiAwLTAuMy0wLjEtMC4zLTAuMSAwLTAuMSAwLjEtMC4yIDAuMi0wLjMgMC40LTEuNyAyLjktMi4xIDMuNy0wLjEgMC4yLTAuMiAwLjItMC40IDAuMi0wLjEgMC0wLjIgMC0wLjMtMC4xLTAuMS0wLjEtMC4zLTAuNC0wLjItMC42IDAuMS0wLjIgMS41LTMuNCAxLjctMy44IDAuMS0wLjMgMC4xLTAuNS0wLjEtMC41LTAuMSAwLTAuMiAwLjEtMC40IDAuMi0wLjUgMC41LTIuNCAyLjUtMi43IDIuNy0wLjEgMC4xLTAuMiAwLjItMC4zIDAuMi0wLjEgMC0wLjItMC4xLTAuMy0wLjItMC4yLTAuMi0wLjItMC40LTAuMS0wLjYgMC4yLTAuMiAyLjYtMy4zIDMtNC4xIDAuNC0wLjcgMS0xLjktMC4yLTEuOS0wLjEgMC0wLjEgMC0wLjIgMC0wLjUgMC0wLjggMC4xLTEuMSAwLjEtMC41IDAtMC43LTAuMS0wLjgtMC4xLTAuMi0wLjEtMC42LTAuMy0wLjUtMC42IDAuMS0wLjIgMC43LTAuMSAxLTAuMiAwLjItMC4xIDAuMi0wLjEgMC4yLTAuMSAwIDAgMS4xLTAuMyAxLjgtMC43IDAuNy0wLjQgMi4zLTEuMSAyLjctMS4xIDAuMiAwIDAuNC0wLjEgMC42LTAuMSAwLjMgMCAwLjYgMCAwLjcgMC4xIDAuMyAwLjEgMC42IDAuOSAyIDEuNSAwIDAgMC42IDAuNiAwLjMgMS44em0tMTEuNyAyLjJjLTAuNC0xLjItMC42LTIuMy0wLjYtMi43LTAuMS0wLjQtMC4zLTAuOS0xLTEuOS0wLjctMS0xLjItMS44LTEuMy0yLjEtMC4xLTAuMiAwLjEtMC41IDAuNC0wLjUgMC4xIDAgMC4yIDAgMC4zIDAuMiAwLjQgMC40IDEuNyAyIDEuOSAyLjIgMC4xIDAuMSAwLjMgMC4yIDAuNCAwLjIgMC4yIDAgMC4yLTAuMSAwLjEtMC42LTAuMy0wLjktMS4zLTIuOS0xLjUtMy4zLTAuMy0wLjcgMC4xLTAuNyAwLjEtMC43IDAgMCAwLjEtMC4xIDAuMi0wLjEgMC4xIDAgMC4yIDAgMC4zIDAuMiAwLjIgMC40IDEuNiAzLjIgMS44IDMuNCAwLjEgMC4xIDAuMiAwLjIgMC4zIDAuMiAwLjEgMCAwLjEtMC4xIDAuMS0wLjMgMC0wLjUtMC4yLTMuMy0wLjMtNC4yIDAtMC4zIDAuMy0wLjUgMC41LTAuNSAwIDAgMCAwIDAgMCAwLjIgMCAwLjQgMC4yIDAuNSAwLjQgMC4xIDAuMiAwLjYgMy43IDAuNyA0LjIgMCAwLjIgMC4yIDAuNCAwLjMgMC40IDAuMSAwIDAuMi0wLjEgMC4zLTAuNCAwLjEtMC43IDAuNy0zLjQgMC43LTMuNyAwLTAuMyAwLjItMC40IDAuNC0wLjQgMCAwIDAuMSAwIDAuMSAwIDAuMiAwIDAuNCAwLjIgMC40IDAuNSAwIDAuMy0wLjMgMy43LTAuMiA0LjgtMC41IDAuMi0xIDAuNC0xLjMgMC40bDAgMCAwIDAtMC4yIDAuMWMwIDAtMC4xIDAtMC4yIDAtMC40IDAtMSAwLTEuMyAwLjYtMC4xIDAuMy0wLjIgMC42LTAuMSAwLjggMC4yIDAuNSAwLjggMC44IDAuOSAwLjkgMCAwIDAgMCAwIDAgMC4yIDAuMSAwLjUgMC4yIDEuMSAwLjIgMC4zIDAgMC42IDAgMS4xLTAuMS0wLjEgMC4yLTAuMiAwLjQtMC4zIDAuNmwtMC4xIDAuMWMtMC4yIDAuMy0wLjggMS4yLTEuOCAyLjUtMC4yIDAtMC4zIDAtMC41IDAtMC4zIDAtMC42IDAtMC45IDAuMSAwIDAtMC44LTAuMS0xLjMtMS4zem0wLjggMi4yYzAgMC4xLTAuMSAwLjEtMC4yIDAuMSAwIDAgMCAwLTAuMSAwIDAgMC0wLjYtMC4yLTEtMC44LTAuNC0wLjYtMC41LTAuOS0wLjUtMC45IDAtMC4xIDAtMC4yIDAuMS0wLjIgMC4xIDAgMC4yIDAgMC4yIDAuMSAwIDAgMC4xIDAuMyAwLjQgMC44IDAuNCAwLjUgMC45IDAuNyAwLjkgMC43IDAuMSAwIDAuMSAwLjEgMC4xIDAuMnptLTAuOSAwLjRjMCAwLjEtMC4xIDAuMS0wLjEgMC4xIDAgMC0wLjEgMC0wLjEgMCAwIDAtMC42LTAuMy0wLjktMC45LTAuNC0wLjYtMC40LTAuOS0wLjQtMSAwLTAuMSAwLjEtMC4yIDAuMS0wLjIgMC4xIDAgMC4yIDAuMSAwLjIgMC4xIDAgMCAwIDAuMyAwLjQgMC44IDAuMyAwLjUgMC44IDAuOCAwLjggMC44IDAuMSAwIDAuMSAwLjEgMC4xIDAuMnptMTQuOS0yMS44LTIwLjIgMGMtMi40IDAtNC40IDItNC40IDQuNGwwIDIwLjJjMCAyLjQgMiA0LjQgNC40IDQuNGwyMC4yIDBjMi40IDAgNC40LTIgNC40LTQuNGwwLTIwLjJjMC0yLjQtMi00LjQtNC40LTQuNCIgZmlsbD0iIzFjNGY5YyIvPjwvZz48L3N2Zz4K") 8px center no-repeat;position:absolute;top:0;right:0;width:43px;height:32px;display:block}#barra-brasil #brasil-vlibras .link-vlibras{height:0;top:32px;transition:0.1s;width:166px !important;display:block;border:2px solid #dfdfdf;color:#606060;visibility:hidden;position:relative}#barra-brasil #brasil-vlibras .link-vlibras a:hover,#barra-brasil #brasil-vlibras .link-vlibras a:focus,#barra-brasil #brasil-vlibras .link-vlibras a:active{visibility:visible;background:#f1f1f1;z-index:8}#barra-brasil #brasil-vlibras .logo-vlibras:hover+.link-vlibras,#barra-brasil #brasil-vlibras .logo-vlibras:active+.link-vlibras,#barra-brasil #brasil-vlibras .logo-vlibras:focus+.link-vlibras,#barra-brasil #brasil-vlibras .link-vlibras:hover,#barra-brasil #brasil-vlibras .link-vlibras:active,#barra-brasil #brasil-vlibras .link-vlibras:focus{width:166px !important;height:50px !important;display:inline-table;border:2px solid #dfdfdf;padding:10px 24px 10px 24px;visibility:visible;background:#f1f1f1;z-index:8}#barra-brasil .eselo{position:absolute;top:0;right:44px;display:block;font-size:1.25em;color:blue}#barra-brasil .acesso-info{position:absolute;left:130px}#barra-brasil .list{position:absolute;top:0;right:40px}#barra-brasil .list-eselo{right:90px !important}#barra-brasil .list .first{border-left:2px solid #dfdfdf}#barra-brasil .list-item{display:inline-block;height:32px;line-height:32px;border-right:2px solid #dfdfdf}#barra-brasil .list-item a{padding:8px 15px 8px 13px}#barra-brasil .link-barra{color:#606060}#barra-brasil #menu-icon{position:absolute;top:3px;border-top:15px double #606060;border-bottom:5px solid #606060;display:none;width:20px;right:5px}@media only screen and (max-width: 959px){#barra-brasil #menu-icon{display:inline-block;padding:5px 3px 0px 3px}#barra-brasil .list .first{border-left:1px solid #dfdfdf}#barra-brasil nav:hover #menu-icon,#barra-brasil nav:active #menu-icon,#barra-brasil nav:focus #menu-icon{background-color:#DDD}body.contraste #barra-brasil nav:hover #menu-icon,body.contraste #barra-brasil nav:active #menu-icon,body.contraste #barra-brasil nav:focus #menu-icon{background-color:#606060 !important}#barra-brasil ul.list,#barra-brasil ul.list:active,#barra-brasil ul.list:focus{overflow:hidden;height:0px;transition:0.3s;padding-top:32px;width:auto;position:absolute;z-index:9}#barra-brasil .list-item{display:block;text-align:center;height:30px;background:#EEE;border:1px solid #dfdfdf}#barra-brasil .list-item a{padding:8px 30px 8px 28px}body.contraste #barra-brasil .list-item{background:#000 !important}body.contraste #menu-icon{border-top:15px double #fff !important;border-bottom:5px solid #fff !important}#barra-brasil .list a:active li,#barra-brasil .list a:focus li,#barra-brasil .list a:hover li{background:#DDD}body.contraste #barra-brasil .list a:active li,body.contraste #barra-brasil .list a:focus li,body.contraste #barra-brasil .list a:hover li{background:#606060 !important}#barra-brasil nav:active ul.list,#barra-brasil nav:focus ul.list,#barra-brasil nav:hover ul.list{height:165px;transition:0.5s}div#wrapper-barra-brasil{overflow:visible}}@media screen and (min-width: 960px){#wrapper-barra-brasil{width:960px}}@media print{#barra-brasil .list{display:none}#barra-brasil .acesso-info .link-barra:after{content:" Barra GovBr"}}</style><style type="text/css" media="all">div#wrapper-footer-brasil{position:relative;overflow:hidden;margin:0 auto;width:auto;padding:0 20px;max-width:960px}#wrapper-footer-brasil .logo-acesso-footer{float:left;width:117px;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2019229%207497%22%20height%3D%2249%22%20width%3D%22117%22%20clip-rule%3D%22evenodd%22%20fill-rule%3D%22evenodd%22%20shape-rendering%3D%22geometricPrecision%22%20text-rendering%3D%22geometricPrecision%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%3C%21%5BCDATA%5B.a%20%7Bfont%3A%20normal%20bold%201693px%20Open%20Sans%2C%20sans-serif%3B%7D%5D%5D%3E%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20transform%3D%22translate%28-1125%20-10350%29%22%3E%3Ccircle%20cx%3D%224864%22%20cy%3D%2214099%22%20r%3D%223739%22%20fill%3D%22%23f6a800%22%2F%3E%3Cpath%20d%3D%22M1835%2016193.3l-353%201005c-137%20389%2070%20596%20459%20459l1005-353z%22%20class%3D%22fil1%22%20fill%3D%22%23f6a800%22%2F%3E%3Ccircle%20r%3D%22750%22%20cy%3D%2212225%22%20cx%3D%224874%22%20fill%3D%22%2300692c%22%2F%3E%3Cpath%20d%3D%22M4874%2013350c-414%200-750%20336-750%20750v1877c0%20414%20336%20750%20750%20750s750-336%20750-750v-1877c0-414-336-750-750-750z%22%20fill%3D%22%2300692c%22%2F%3E%3Cg%20fill%3D%22%23fff%22%3E%3Ctext%20x%3D%228873%22%20y%3D%2213324%22%3E%3Ctspan%20class%3D%22a%22%20y%3D%2213324%22%3EAcesso%20%C3%A0%3C%2Ftspan%3E%3Ctspan%20class%3D%22a%22%20x%3D%228873%22%20y%3D%2215440%22%3EInforma%C3%A7%C3%A3o%3C%2Ftspan%3E%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E") center no-repeat;height:49px}body.contraste #footer-brasil{background:#000 !important}@media screen and (min-width: 960px){#wrapper-footer-brasil{width:960px}}@media print{#wrapper-footer-brasil{border-top:2px solid #dfdfdf}#wrapper-footer-brasil:before{content:"Barra GovBr";color:#606060;font-size:12px;font-family:"Open Sans",Arial,Helvetica,sans-serif}}</style></head>
+
+
+<body onload="checkJquery()" class="fundo-claro loading-logo" data-autenticado="0" data-email="" data-nome="" data-foto="" style="">
+
+    <div id="barra-brasil"><div id="wrapper-barra-brasil"><div class="brasil-flag"><a href="http://brasil.gov.br" class="link-barra">Brasil</a></div><span class="acesso-info"><a href="http://www.servicos.gov.br/?pk_campaign=barrabrasil" class="link-barra" id="barra-brasil-orgao">Serviços</a></span><nav><ul id="lista-barra-brasil" class="list"><li><a href="#" id="menu-icon"></a></li><li class="list-item first"><a href="http://www.simplifique.gov.br" class="link-barra">Simplifique!</a></li><li class="list-item"><a href="http://brasil.gov.br/participacao-social" class="link-barra">Participe</a></li><li class="list-item"><a href="http://www.acessoainformacao.gov.br" class="link-barra">Acesso à informação</a></li><li class="list-item"><a href="http://www.planalto.gov.br/legislacao" class="link-barra">Legislação</a></li><li class="list-item last last-item"><a href="http://www.brasil.gov.br/canais-do-executivo-federal" class="link-barra">Canais</a></li></ul></nav><span id="brasil-vlibras"><a class="logo-vlibras" id="logovlibras" href="#"></a><span class="link-vlibras"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAUEBAAAACwAAAAAAQABAAACAkQBADs=" class="barralazy" data-src="//barra.brasil.gov.br/imagens/vlibras.gif" width="132" height="116">&nbsp;<br>O conteúdo desse portal pode ser acessível em Libras usando o <a href="http://www.vlibras.gov.br">VLibras</a></span></span></div></div>
+    <div class="menu-ibge">
+        <div class="container-fluid">
+            <div class="wrapper-logo">
+                <a href="https://www.ibge.gov.br">
+                    <div class="logo-ibge xs"></div>
+                </a>
+            </div>
+            <div class="texto-ibge">Sistema IBGE de Recuperação Automática - SIDRA</div>
+        </div>
+    </div>
+    <div class="menu-sidra navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="vertical-align logo xs">
+                    <div class="cell">
+                        <a href="/">
+                            <div class="logo-img xs"></div>
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="vertical-align right xs">
+                    <div class="cell">
+
+                        <button type="button" class="navbar-toggle menu-link-text button-xs areausuario-link icone-area-usuario" data-href="/perfil" data-tipo="xs" aria-expanded="false">
+                            <i class="glyphicon glyphicon-user lupa"></i>
+                        </button>
+
+                        <button id="sidra-pesquisa-sm-button" type="button" class="navbar-toggle menu-link-text button-xs" data-target="#sidra-pesquisa-sm" aria-expanded="false">
+                            <i class="glyphicon glyphicon-search lupa"></i>
+                        </button>
+
+                        <button type="button" class="navbar-toggle button-xs" data-toggle="collapse" data-target="#sidra-menu-collapse" aria-expanded="false">
+
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <div class="pesquisa pesquisa-sm" id="sidra-pesquisa-sm" style="display: none;">
+                            <form data-target="#sidra-pesquisa-sm">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="pesquisar">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default">
+                                            OK
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="navbar-collapse collapse" id="sidra-menu-collapse">
+                <ul class="nav navbar-nav navbar-right xs">
+
+                    <li class="dropdown hidden-menu pesquisas-menu-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pesquisas<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                    <div class="pesquisas-menu-arvore">
+
+        <div class="pesquisas-menu-form">
+            <input type="text" placeholder="Filtro" class="form-control">
+        </div>
+
+        <ul>
+            <li style="display: block;">
+                <span class="expande">Indicadores</span>
+                <ul style="display: block;">
+                    <li style="display: block;">
+                        <span class="expande">Trabalho e Rendimento</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/pnadcm">Pesquisa Nacional por Amostra de Domicílios Continua Mensal - PNADCM</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pnadct">Pesquisa Nacional por Amostra de Domicílios Continua Trimestral - PNADCT</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pme">Pesquisa Mensal de Emprego - PME (extinta)</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Agropecuária</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/estoques">Pesquisa de Estoques - ESTOQUES</a></li>
+                            <li style="display: block;"><a href="/pesquisa/lspa">Levantamento Sistemático da Produção Agrícola - LSPA</a></li>
+                            <li style="display: block;"><a href="/pesquisa/abate">Pesquisa Trimestral do Abate de Animais - ABATE</a></li>
+                            <li style="display: block;"><a href="/pesquisa/couro">Pesquisa Trimestral do Couro - COURO</a></li>
+                            <li style="display: block;"><a href="/pesquisa/leite">Pesquisa Trimestral do Leite - LEITE</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pog">Produção de Ovos de Galinha - POG</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Indústria</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/pimes">Pesquisa Industrial Mensal de Emprego e Salário - PIMES (extinta)</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pim-pf-brasil">Pesquisa Industrial Mensal - Produção Física - PIM-PF-Brasil</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pim-pf-regional">Pesquisa Industrial Mensal - Produção Física - PIM-PF-Regional</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Comércio</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/pmc">Pesquisa Mensal de Comércio - PMC</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Serviços</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/pms">Pesquisa Mensal de Serviços - PMS</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Índices, Preços e Custos</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/ipp">Índice de Preços ao Produtor - IPP</a></li>
+                            <li style="display: block;"><a href="/pesquisa/sinapi">Sistema Nacional de Pesquisa de Custos e Índices da Construção Civil - SINAPI</a></li>
+                            <li style="display: block;"><a href="/pesquisa/snipc">Índices de Preços ao Consumidor (IPCA, INPC e IPCA15) - SNIPC</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Sistema de Contas Nacionais Trimestrais</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/cnt">Contas Nacionais Trimestrais - CNT</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;"><a href="/pesquisa/ods">Objetivos de Desenvolvimento Sustentável - ODS</a></li>
+                </ul>
+            </li>
+
+
+            <li style="display: block;">
+                <span class="expande">População</span>
+                <ul style="display: block;">
+                    <li style="display: block;">
+                        <a href="/pesquisa/censo-demografico">Censo Demográfico - Censo-Demografico</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/registro-civil">Estatísticas do Registro Civil - Registro-Civil</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/pnadca">Pesquisa Nacional por Amostra de Domicílios Contínua Anual - PNADCA</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/pnad">Pesquisa Nacional por Amostra de Domicílios - PNAD</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/estimapop">Estimativas de População - EstimaPop</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/projecao-da-populacao">Projeções da População</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/pof">Pesquisa de Orçamentos Familiares - POF</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/pns">Pesquisa Nacional de Saúde - PNS</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/ams">Pesquisa Assistência Médico-Sanitária - AMS</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/pnsb">Pesquisa Nacional de Saneamento Básico - PNSB</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/pense">Pesquisa Nacional de Saúde do Escolar - PeNSE</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/munic">Pesquisa de Informações Básicas Municipais - MUNIC</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li style="display: block;">
+                <span class="expande">Economia</span>
+                <ul style="display: block;">
+                    <li style="display: block;">
+                        <span class="expande">Indústria</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/paic">Pesquisa Anual da Indústria da Construção - PAIC</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pia-empresa">Pesquisa Industrial Anual - PIA-Empresa</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pia-produto">Pesquisa Industrial Anual - PIA-Produto</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Serviços</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/pas">Pesquisa Anual de Serviços - PAS</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pspp">Pesquisa de Serviços de Publicidade e Promoção - PSPP</a></li>
+                            <li style="display: block;"><a href="/pesquisa/psti">Pesquisa de Serviços de Tecnologia da Informação - PSTI</a></li>
+                            <li style="display: block;"><a href="/pesquisa/psh">Pesquisa de Serviços de Hospedagem - PSH</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Agropecuária</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/censo-agropecuario">Censo Agropecuário - Censo-Agropecuario</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pam">Produção Agrícola Municipal - PAM</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pevs">Produção da Extração Vegetal e da Silvicultura - PEVS</a></li>
+                            <li style="display: block;"><a href="/pesquisa/ppm">Pesquisa da Pecuária Municipal - PPM</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Comércio</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/pac">Pesquisa Anual de Comércio - PAC</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Inovação e Empreendedorismo</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/pintec">Pesquisa de Inovação - PINTEC</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Contas Nacionais</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/cna">Contas Nacionais Anuais - CNA</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pib-munic">Produto Interno Bruto dos Municípios - PIB-Munic</a></li>
+                            <li style="display: block;"><a href="/pesquisa/contas-economicas-ambientais">Contas Econômicas Ambientais</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;"><a href="/pesquisa/cempre">Cadastro Central de Empresas - CEMPRE</a></li>
+                    <li style="display: block;"><a href="/pesquisa/demografia-das-empresas">Demografia das Empresas - Demografia-das-Empresas</a></li>
+                    <li style="display: block;"><a href="/pesquisa/fasfil">Fundações Privadas e Associações sem Fins Lucrativos - FASFIL</a></li>
+                    <li style="display: block;"><a href="/pesquisa/cadastros-de-mei">Estatísticas dos Cadastros de Microempreendedores Individuais (MEI) </a></li>
+                </ul>
+            </li>
+
+            <li style="display: block;">
+                <span class="expande">Meio Ambiente</span>
+                <ul style="display: block;">
+                    <li style="display: block;">
+                        <span class="expande">Contas Econômicas Ambientais</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/contas-economicas-ambientais/contas-da-terra">Contas Econômicas Ambientais da Terra</a></li>
+                            <li style="display: block;"><a href="/pesquisa/contas-economicas-ambientais/contas-economicas-da-agua">Contas Econômicas Ambientais da Água - CEAA</a></li>
+                            <li style="display: block;"><a href="/pesquisa/contas-economicas-ambientais/contas-economicas-de-energia">Contas Econômicas Ambientais de Energia - CEAE</a></li>
+                            <li style="display: block;"><a href="/pesquisa/contas-economicas-ambientais/contas-de-ecossistemas">Contas de Ecossistemas: O Uso da Terra nos Biomas</a></li>
+                            <li style="display: block;"><a href="/pesquisa/contas-economicas-ambientais/contas-de-especies">Contas de Ecossistemas: Espécies Ameaçadas</a></li>
+                            <li style="display: block;"><a href="/pesquisa/contas-economicas-ambientais/contribuicao-dos-polinizadores">Contribuição dos Polinizadores para as Produções Agrícola e Extrativista do Brasil</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;"><a href="/pesquisa/ids">Indicadores de Desenvolvimento Sustentável - IDS</a></li>
+                    <li style="display: block;"><a href="/pesquisa/areas-urbanizadas">Áreas Urbanizadas</a></li>
+                </ul>
+            </li>
+
+        </ul>
+
+    </div>
+
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="visible-menu pesquisas-menu-dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="modal" data-target="#pesquisas-menu-modal">Pesquisas</a>
+                    </li>
+
+                    <li><a href="/acervo">Acervo</a></li>
+                    <li><a href="/territorio">Território</a></li>
+                    <li><a href="/contato">Contato</a></li>
+                    <li><a href="/ajuda">Ajuda</a></li>
+
+                    <li class="areausuario-li">
+                        <a href="/perfil" title="Área do Usuário Sidra" data-tipo="lg" class="areausuario-perfil-link icone-area-usuario" onclick="javascript: sessionStorage.setItem('isFirstAccess', true);">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </a>
+
+                            <div class="areausuario-login-container" data-target=".areausuario-perfil-link" data-link=".areausuario-link" data-modo="janela">
+
+        <div class="areausuario-login-arrow">
+        </div>
+
+        <div class="areausuario-login">
+            <div class="login-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4>Acessar sua Conta</h4>
+            </div>
+
+
+            <div class="login-body">
+                <ul class="opcao-login">
+                    <li class="active" data-target=".formulario-sidra">Sidra</li>
+                    <li data-target=".formulario-ibge-mfa">IBGE</li>
+                </ul>
+
+                <div class="formulario formulario-sidra">
+                    <form class="login-ajax-form" method="post" action="/perfil/login/sidra">
+                        <input type="hidden" name="ReturnUrl">
+
+                        <span data-validator-for="Email">
+                        </span>
+                        <input placeholder="E-mail" name="Email" data-val-required="O campo Email é obrigatório." class="form-control primeiro" type="text">
+
+                        <div class="separador"></div>
+
+                        <span data-validator-for="Senha"></span>
+                        <input placeholder="Senha" name="Senha" data-val-required="O campo Senha é obrigatório." class="form-control" type="password">
+
+                        <div class="separador"></div>
+
+                        <label class="checkbox-inline"><input name="ManterContectado" type="checkbox"> Manter-me conectado</label>
+
+                        <div class="separador"></div>
+
+                        <input type="submit" value="Entrar" class="btn btn-sm btn-success login">
+
+                        <div class="separador"></div>
+
+                        <a class="esqueci" href="/perfil/usuario/recuperarsenha">Esqueci minha Senha</a>
+                        <a class="cadastro" href="/perfil/usuario/cadastro">Cadastre-se</a>
+                    </form>
+
+                    <div class="redes">
+                        <div class="redes-titulo">
+                            Acesse pelas redes sociais
+                        </div>
+                        <div class="icons">
+                            <a class="login-externo" data-action="Facebook" href="#" title="Facebook"><img class="icon-rede" src="/Content/imagens/login/facebook.png"></a>
+                            <a class="login-externo" data-action="Google" href="#" title="Google"><img class="icon-rede" src="/Content/imagens/login/google.png"></a>
+                            <a class="login-externo" data-action="Microsoft" href="#" title="Microsoft"><img class="icon-rede" src="/Content/imagens/login/microsoft.png"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formulario formulario-ibge-mfa" style="display: none">
+                        <form class="login-ajax-form" method="post" action="/perfil/login/ibgemfa">
+                            <input type="hidden" name="ReturnUrl">
+
+
+                            <span data-validator-for="Usuario"></span>
+                            <input placeholder="Usuário IBGE" name="Usuario" data-val-required="O campo Email é obrigatório." class="form-control primeiro" type="text">
+
+                            <div class="separador"></div>
+
+                            <span data-validator-for="Senha"></span>
+                            <input placeholder="Senha" name="Senha" data-val-required="O campo Senha é obrigatório." class="form-control" type="password">
+
+                            <div class="separador"></div>
+                            <label class="checkbox-inline"><input type="checkbox"> Manter-me conectado</label>
+
+                            <div class="separador"></div>
+                            <input type="submit" value="Entrar" class="btn btn-sm btn-success login">
+
+                            <div class="separador"></div>
+                            <span>Utilize seu login de rede</span>
+                        </form>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+                        
+
+                    </li>
+
+                    <li class="lupa-li">
+
+                        <a href="#" data-target="#sidra-pesquisa-lg" title="Pesquisa Tabela">
+                            <i class="glyphicon glyphicon-search lupa"></i>
+                        </a>
+
+                        <div class="pesquisa" id="sidra-pesquisa-lg" style="display: none;">
+                            <form data-target="#sidra-pesquisa-lg">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="pesquisar">
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default">
+                                            OK
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="/Scripts/barra.js" type="text/javascript"></script>
+
+    
+
+
+<div class="container-fluid" style="position:relative;">
+    <div id="mainDiv" class="container-centralizado container-lg"><div id="panel-acervo" class="janela fixed"><div class="panel panel-clear"><div class="janela-comandos panel-heading nowrap"><label class="janela-aria sr-only">Navegador de acervo</label><div class="janela-buttons" style="display: none;"></div><div class="janela-titulo"><span>Acervo</span></div></div><div class="janela-header hidden"></div><div class="janela-order hidden"></div><div class="janela-borda-dados panel-body"><div class="janela-dados"><div id="editor-acervo">
+        <div class="titulo-acervo">
+            <h2>Acervo</h2>
+        </div>
+        <div class="clearfix">
+            <div class="pull-right">
+                <a id="consulta-tabela" href="#" target="_blank" class="btn btn-default hidden" title="Consultar tabela selecionada">
+                    <i class="glyphicon glyphicon-new-window"></i>
+                </a>
+                <button type="button" id="botao-remover-filtros" data-cmd="remover-filtros" class="cmd-editor btn btn-default" title="Limpar filtros ativos" disabled="">
+                    <i class="glyphicon glyphicon-erase"></i>
+                </button>
+            </div>
+            <h4>Filtros ativos</h4>
+        </div>
+        <div id="container-filtros" class="wrapper-lista"><table><tbody><tr><th class="filtro-vazio">Nenhum filtro ativo.</th></tr></tbody></table></div>
+        <div id="ferramentas-superior" class="ferramentas-editor">
+            <div class="ferramentas-expand">
+                <div id="acervo-dropdown" class="ui-dropdown"><div id="ui_1000" class="btn-group"><button class="btn btn-default dropdown-text clear" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 136px;">Tabela de dados agregados</button><button class="btn btn-default dropdown-toggle has-caret" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Lista de dimensões" title="Lista de dimensões" style="width: 24px;"><span class="caret"></span><span class="sr-only">Toggle Dropdown</span></button><ul class="dropdown-menu"><li data-index="0" class="disabled" data-id="nula"><a href="#">Selecione</a></li><li data-index="1" data-id="A"><a href="#">Assunto</a></li><li data-index="2" data-id="C"><a href="#">Classificação</a></li><li data-index="3" data-id="N"><a href="#">Nível territorial</a></li><li data-index="4" data-id="P"><a href="#">Período de disponibilidade</a></li><li data-index="5" data-id="S"><a href="#">Pesquisa</a></li><li data-index="6" data-id="D"><a href="#">Plano de divulgação</a></li><li data-index="7" data-id="T" class="active"><a href="#">Tabela de dados agregados</a></li><li data-index="8" data-id="E"><a href="#">Tipo de período (ano, mês etc)</a></li><li data-index="9" data-id="V"><a href="#">Variável agregada</a></li></ul></div></div>
+            </div>
+            <div class="ferramentas-fixed">
+                <div id="opcoes-lista" class="ui-dropdown"><div id="ui_1001" class="dropdown"><button class="btn btn-default dropdown-toggle dropdown-text" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Operações sobre a lista" title="Operações sobre a lista"><span><span class="glyphicon glyphicon-menu-hamburger"></span></span></button><ul class="dropdown-menu dropdown-menu-right"><li data-index="0" data-id="imprimir"><a href="#">Imprimir lista</a></li><li data-index="1" data-id="texto"><a href="#">Visualizar como texto</a></li><li role="separator" class="divider"></li><li data-index="2" data-id="tsv"><a href="#">Salvar TSV</a></li><li data-index="3" data-id="xlsx"><a href="#">Salvar XLSX</a></li><li data-index="4" data-id="ods"><a href="#">Salvar ODS</a></li></ul></div></div>
+            </div>
+        </div>
+        <div id="mensagem-consulta-tabela" class="">
+            Para visualizar a tabela, clique no ícone
+        </div>
+        <div id="container-lista" class="wrapper-lista"><div class="listview"><div class="lv-wrapper" style="height: 320px;"><div class="lv-container" style="height: 415783px;"><div class="lv-container"><table class="lv-header" style="min-width: 100%;"><thead><tr><th style="min-width: 28px; width: 28px;"><div class="lv-data"></div></th><th style="min-width: 33px; width: 33px;"><div class="lv-data">Id</div></th><th style="min-width: 3195px;"><div class="lv-data">Nome</div></th></tr></thead></table></div><table class="lv-block" style="top: 5428px; min-width: 100%;"><tbody><tr class="lv-row item-acervo fundo-alternado" data-id="149" style="height: 45px;"><td style="min-width: 28px; width: 28px;"><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/149" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td style="min-width: 33px; width: 33px;"><div class="lv-data">149</div></td><td style="min-width: 3195px;"><div class="lv-data">Domicílios particulares permanentes por tipo de material da cobertura, tipo de material das paredes e situação<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="150"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/150" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">150</div></td><td><div class="lv-data">Domicílios particulares permanentes por número de componentes das famílias, espécie de família e situação<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="151"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/151" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">151</div></td><td><div class="lv-data">Leite cru ou resfriado recebido pela indústria por origem do leite recebido<span class="texto-disponibilidade">janeiro 1989 a dezembro 1996</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="152"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/152" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">152</div></td><td><div class="lv-data">Leite pasteurizado por destino do leite pasteurizado<span class="texto-disponibilidade">janeiro 1989 a dezembro 1996</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="153"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/153" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">153</div></td><td><div class="lv-data">Leite resfriado ou não destinado à indústria por destino do leite resfriado ou não<span class="texto-disponibilidade">janeiro 1989 a dezembro 1996</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="155"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/155" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">155</div></td><td><div class="lv-data">Índice de Gini da renda das pessoas responsáveis pelos domicílios<span class="texto-disponibilidade">1991, 2000</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="156"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/156" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">156</div></td><td><div class="lv-data">Domicílios particulares ocupados, moradores em domicílios particulares ocupados e média de moradores em domicílios particulares ocupados<span class="texto-disponibilidade">1991, 2000, 2010</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="157"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/157" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">157</div></td><td><div class="lv-data">Número médio de cômodos por domicílio<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="158"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/158" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">158</div></td><td><div class="lv-data">Número médio de cômodos servindo de dormitório por domicílio<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="159"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/159" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">159</div></td><td><div class="lv-data">Valor do rendimento médio da pessoa responsável pelo domicílio<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="160"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/160" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">160</div></td><td><div class="lv-data">Domicílios por condição de ocupação, abastecimento de água, tipo de domicílio, instalação sanitária e número de famílias<span class="texto-disponibilidade">1987, 1995</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="162"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/162" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">162</div></td><td><div class="lv-data">Número médio de cômodos por domicílio por situação<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="163"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/163" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">163</div></td><td><div class="lv-data">Chefes de domicílios particulares permanentes por sexo, situação e grupos de idade a partir dos 10 anos<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="164"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/164" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">164</div></td><td><div class="lv-data">Chefes de domicílios particulares permanentes por sexo, anos de estudo e grupos de idade a partir dos 10 anos<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="165"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/165" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">165</div></td><td><div class="lv-data">Pessoas moradoras por situação e espécie<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="166"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/166" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">166</div></td><td><div class="lv-data">Pessoas moradoras em domicílios particulares permanentes por situação e localização<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="167"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/167" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">167</div></td><td><div class="lv-data">Pessoas moradoras em domicílios particulares permanentes por situação e número de cômodos servindo de dormitório<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="168"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/168" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">168</div></td><td><div class="lv-data">Pessoas moradoras em domicílios particulares permanentes por situação e número de banheiros<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="169"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/169" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">169</div></td><td><div class="lv-data">Domicílios por número de cômodos, condição de ocupação, tipo de domicílio e número de famílias<span class="texto-disponibilidade">1987, 1995</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="170"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/170" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">170</div></td><td><div class="lv-data">Valor do rendimento médio da pessoa responsável pelo domicílio por classes de rendimento nominal médio mensal da pessoa responsável pelo domicílio<span class="texto-disponibilidade">1991</span></div></td></tr></tbody></table><table class="lv-block" style="top: 0px; display: none;"><tbody><tr class="lv-row item-acervo fundo-alternado" data-id="21" style="height: 45px;"><td style=""><div class="lv-data"></div></td><td style=""><div class="lv-data">21</div></td><td style=""><div class="lv-data">Produto interno bruto a preços correntes, impostos, líquidos de subsídios, sobre produtos a preços correntes e valor adicionado bruto a preços correntes total e por atividade econômica, e respectivas participações - Referência 2002 (Série encerrada)<span class="texto-disponibilidade">1999 a 2012</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="22"><td><div class="lv-data"></div></td><td><div class="lv-data">22</div></td><td><div class="lv-data">INPC - Variação mensal, para o índice geral, grupos, subgrupos, itens e subitens de produtos e serviços (de janeiro/1991 até julho/1999)<span class="texto-disponibilidade">janeiro 1991 a julho 1991, setembro 1991 a julho 1999</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="23"><td><div class="lv-data"></div></td><td><div class="lv-data">23</div></td><td><div class="lv-data">INPC - Peso mensal, para o índice geral, grupos, subgrupos, itens e subitens de produtos e serviços (de janeiro/1991 até julho/1999)<span class="texto-disponibilidade">janeiro 1991 a julho 1991, setembro 1991 a julho 1999</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="24"><td><div class="lv-data"></div></td><td><div class="lv-data">24</div></td><td><div class="lv-data">INPCE - Percentual no mês, para o índice geral, grupos, subgrupos, itens e subitens de produtos e serviços (série encerrada)<span class="texto-disponibilidade">janeiro 1992 a junho 1994</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="25"><td><div class="lv-data"></div></td><td><div class="lv-data">25</div></td><td><div class="lv-data">INPCE - Peso no mês, para o índice geral, grupos, subgrupos, itens e subitens de produtos e serviços (série encerrada)<span class="texto-disponibilidade">janeiro 1992 a junho 1994</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="26"><td><div class="lv-data"></div></td><td><div class="lv-data">26</div></td><td><div class="lv-data">Domicílios particulares e coletivos, por situação e condição na ocupação - Sinopse<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="27"><td><div class="lv-data"></div></td><td><div class="lv-data">27</div></td><td><div class="lv-data">Produção física industrial, por classes de indústrias e tipo de índice (série encerrada em janeiro de 2004)<span class="texto-disponibilidade">janeiro 1985 a janeiro 2004</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="28"><td><div class="lv-data"></div></td><td><div class="lv-data">28</div></td><td><div class="lv-data">Produção física industrial, por tipo de índice e gêneros da indústria de transformação (série encerrada em janeiro de 2004)<span class="texto-disponibilidade">janeiro 1985 a janeiro 2004</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="29"><td><div class="lv-data"></div></td><td><div class="lv-data">29</div></td><td><div class="lv-data">Produção física industrial, por tipo de índice e categorias de uso (série encerrada em janeiro de 2004)<span class="texto-disponibilidade">janeiro 1985 a janeiro 2004</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="30"><td><div class="lv-data"></div></td><td><div class="lv-data">30</div></td><td><div class="lv-data">Custo médio m² em moeda corrente (série encerrada em abril de 2004)<span class="texto-disponibilidade">janeiro 1990 a abril 2004</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="32"><td><div class="lv-data"></div></td><td><div class="lv-data">32</div></td><td><div class="lv-data">Custo médio m² em variação percentual, por tipo de índice (série encerrada em abril de 2004)<span class="texto-disponibilidade">janeiro 1990 a abril 2004</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="33"><td><div class="lv-data"></div></td><td><div class="lv-data">33</div></td><td><div class="lv-data">Custo de projeto m², por padrão de acabamento e tipo de projeto (série encerada em dezembro de 1998)<span class="texto-disponibilidade">janeiro 1990 a dezembro 1998</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="34"><td><div class="lv-data"></div></td><td><div class="lv-data">34</div></td><td><div class="lv-data">Preços medianos, por materiais e serviços (série encerrada em dezembro de 2002)<span class="texto-disponibilidade">janeiro 1990 a dezembro 2002</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="35"><td><div class="lv-data"></div></td><td><div class="lv-data">35</div></td><td><div class="lv-data">Salários medianos, por categorias profissionais (série encerrada em setembro de 2013)<span class="texto-disponibilidade">janeiro 1990 a setembro 2013</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="36"><td><div class="lv-data"></div></td><td><div class="lv-data">36</div></td><td><div class="lv-data">Receita operacional líquida e subvenções das empresas de transporte ferroviário/metroviário com 20 ou mais pessoas ocupadas, segundo os produtos/serviços prestados<span class="texto-disponibilidade">2003 a 2007</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="37"><td><div class="lv-data"></div></td><td><div class="lv-data">37</div></td><td><div class="lv-data">Receita operacional líquida e subvenções das empresas de transporte aquaviário com 20 ou mais pessoas ocupadas, segundo os produtos/serviços prestados<span class="texto-disponibilidade">2003 a 2007</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="38"><td><div class="lv-data"></div></td><td><div class="lv-data">38</div></td><td><div class="lv-data">Receita operacional líquida e subvenções das empresas de transporte aéreo com 20 ou mais pessoas ocupadas, segundo os produtos/serviços prestados<span class="texto-disponibilidade">2003 a 2007</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="39"><td><div class="lv-data"></div></td><td><div class="lv-data">39</div></td><td><div class="lv-data">Receita operacional líquida e subvenções das empresas de informática com 20 ou mais pessoas ocupadas, segundo os produtos/serviços prestados<span class="texto-disponibilidade">2003 a 2007</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="40"><td><div class="lv-data"></div></td><td><div class="lv-data">40</div></td><td><div class="lv-data">Receita operacional líquida e subvenções das empresas de telecomunicações com 20 ou mais pessoas ocupadas, segundo os produtos/serviços prestados<span class="texto-disponibilidade">2003 a 2007</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="41"><td><div class="lv-data"></div></td><td><div class="lv-data">41</div></td><td><div class="lv-data">Quantidade de bovinos abatidos<span class="texto-disponibilidade">janeiro 1989 a dezembro 1996</span></div></td></tr></tbody></table><table class="lv-block" style="min-width: 100%; top: 1828px;"><tbody><tr class="lv-row item-acervo fundo-alternado" data-id="42" style="height: 45px;"><td style="min-width: 28px; width: 28px;"><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/42" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td style="min-width: 33px; width: 33px;"><div class="lv-data">42</div></td><td style="min-width: 3195px;"><div class="lv-data">Quantidade de suínos abatidos<span class="texto-disponibilidade">janeiro 1989 a dezembro 1996</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="43"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/43" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">43</div></td><td><div class="lv-data">Quantidade de equídeos abatidos<span class="texto-disponibilidade">janeiro 1989 a dezembro 1996</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="44"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/44" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">44</div></td><td><div class="lv-data">Quantidade de aves abatidas<span class="texto-disponibilidade">janeiro 1989 a dezembro 1996</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="45"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/45" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">45</div></td><td><div class="lv-data">Peso das carcaças de bovinos abatidos<span class="texto-disponibilidade">janeiro 1989 a dezembro 1996</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="46"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/46" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">46</div></td><td><div class="lv-data">Peso das carcaças de suínos abatidos<span class="texto-disponibilidade">janeiro 1989 a dezembro 1996</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="47"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/47" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">47</div></td><td><div class="lv-data">Peso das carcaças de equídeos abatidos<span class="texto-disponibilidade">janeiro 1989 a dezembro 1996</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="48"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/48" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">48</div></td><td><div class="lv-data">Peso das carcaças de aves abatidas<span class="texto-disponibilidade">janeiro 1989 a dezembro 1996</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="49"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/49" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">49</div></td><td><div class="lv-data">Folha de pagamento nominal por tipo de índice e gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="50"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/50" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">50</div></td><td><div class="lv-data">Folha de pagamento nominal por classes de indústrias e tipo de índice<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="51"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/51" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">51</div></td><td><div class="lv-data">Folha de pagamento nominal por trabalhador por tipo de índice e gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="52"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/52" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">52</div></td><td><div class="lv-data">Folha de pagamento nominal por trabalhador por classes de indústrias e tipo de índice<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="53"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/53" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">53</div></td><td><div class="lv-data">Folha de pagamento real por trabalhador por tipo de índice e gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="54"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/54" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">54</div></td><td><div class="lv-data">Folha de pagamento real por trabalhador por classes de indústrias e tipo de índice<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="55"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/55" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">55</div></td><td><div class="lv-data">Folha de pagamento real por tipo de índice e gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="56"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/56" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">56</div></td><td><div class="lv-data">Folha de pagamento real por classes de indústrias e tipo de índice<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="57"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/57" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">57</div></td><td><div class="lv-data">Número de horas pagas na produção por tipo de índice e gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="58"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/58" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">58</div></td><td><div class="lv-data">IPCA - Variação mensal, para o índice geral, grupos, subgrupos, itens e subitens de produtos e serviços (de janeiro/1991 até julho/1999)<span class="texto-disponibilidade">janeiro 1991 a julho 1991, setembro 1991 a julho 1999</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="59"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/59" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">59</div></td><td><div class="lv-data">Número de horas pagas na produção por trabalhador por tipo de índice e gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="60"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/60" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">60</div></td><td><div class="lv-data">Número de horas pagas na produção por classes de indústrias e tipo de índice<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="61"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/61" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">61</div></td><td><div class="lv-data">IPCA - Peso mensal, para o índice geral, grupos, subgrupos, itens e subitens de produtos e serviços (de janeiro/1991 até julho/1999)<span class="texto-disponibilidade">janeiro 1991 a julho 1991, setembro 1991 a julho 1999</span></div></td></tr></tbody></table><table class="lv-block" style="min-width: 100%; top: 2728px;"><tbody><tr class="lv-row item-acervo fundo-alternado" data-id="62" style="height: 45px;"><td style="min-width: 28px; width: 28px;"><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/62" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td style="min-width: 33px; width: 33px;"><div class="lv-data">62</div></td><td style="min-width: 3195px;"><div class="lv-data">Número de horas pagas na produção por trabalhador por classes de indústrias e tipo de índice<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="63"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/63" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">63</div></td><td><div class="lv-data">Pessoal ocupado na produção por tipo de índice e gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a abril 2001</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="64"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/64" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">64</div></td><td><div class="lv-data">Pessoal ocupado na produção por classes de indústrias e tipo de índice<span class="texto-disponibilidade">janeiro 1985 a abril 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="65"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/65" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">65</div></td><td><div class="lv-data">Salário contratual médio nominal por tipo de índice e gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a abril 2001</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="66"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/66" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">66</div></td><td><div class="lv-data">Salário contratual médio real por tipo de índice e gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a abril 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="67"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/67" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">67</div></td><td><div class="lv-data">Salário contratual médio nominal por classes de indústrias e tipo de índice<span class="texto-disponibilidade">janeiro 1985 a abril 2001</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="68"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/68" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">68</div></td><td><div class="lv-data">Salário contratual nominal por tipo de índice e gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a abril 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="69"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/69" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">69</div></td><td><div class="lv-data">Salário contratual médio real por classes de indústrias e tipo de índice<span class="texto-disponibilidade">janeiro 1985 a abril 2001</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="70"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/70" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">70</div></td><td><div class="lv-data">Salário contratual nominal por classes de indústrias e tipo de índice<span class="texto-disponibilidade">janeiro 1985 a abril 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="71"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/71" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">71</div></td><td><div class="lv-data">Salário contratual real por tipo de índice e gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a abril 2001</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="72"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/72" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">72</div></td><td><div class="lv-data">Salário contratual real por classes de indústrias e tipo de índice<span class="texto-disponibilidade">janeiro 1985 a abril 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="73"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/73" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">73</div></td><td><div class="lv-data">Efetivo dos rebanhos, por tipo de rebanho (série encerrada)<span class="texto-disponibilidade">1974 a 2012</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="74"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/74" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">74</div></td><td><div class="lv-data">Produção de origem animal, por tipo de produto<span class="texto-disponibilidade">1974 a 2024</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="75"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/75" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">75</div></td><td><div class="lv-data">Valor da produção nominal por tipo de índice e gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="76"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/76" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">76</div></td><td><div class="lv-data">Valor da produção nominal por classes de indústrias e tipo de índice<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="77"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/77" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">77</div></td><td><div class="lv-data">Valor da produção real por tipo de índice e gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="78"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/78" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">78</div></td><td><div class="lv-data">Valor da produção real por classes de indústrias e tipo de índice<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="79"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/79" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">79</div></td><td><div class="lv-data">Valor das horas extras pagas nominal por tipo de índice e gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="80"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/80" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">80</div></td><td><div class="lv-data">Valor das horas extras pagas nominal por classes de indústrias e tipo de índice<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="81"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/81" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">81</div></td><td><div class="lv-data">Valor das horas extras pagas real por tipo de índice e gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr></tbody></table><table class="lv-block" style="min-width: 100%; top: 3628px;"><tbody><tr class="lv-row item-acervo fundo-alternado" data-id="82" style="height: 45px;"><td style="min-width: 28px; width: 28px;"><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/82" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td style="min-width: 33px; width: 33px;"><div class="lv-data">82</div></td><td style="min-width: 3195px;"><div class="lv-data">Valor das horas extras pagas real por classes de indústrias e tipo de índice<span class="texto-disponibilidade">janeiro 1985 a março 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="83"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/83" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">83</div></td><td><div class="lv-data">Receita operacional líquida e subvenções das empresas de serviços audiovisuais com 20 ou mais pessoas ocupadas, segundo os produtos/serviços prestados<span class="texto-disponibilidade">2003 a 2007</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="84"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/84" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">84</div></td><td><div class="lv-data">IPCAE - Percentual no mês, para o índice geral, grupos, subgrupos, itens e subitens de produtos e serviços (de janeiro/1992 até julho/1999)<span class="texto-disponibilidade">janeiro 1992 a maio 1992, outubro 1992 a julho 1999</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="85"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/85" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">85</div></td><td><div class="lv-data">IPCAE - Peso no mês, para o índice geral, grupos, subgrupos, itens e subitens de produtos e serviços (de janeiro/1992 até julho/1999)<span class="texto-disponibilidade">janeiro 1992 a julho 1999</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="86"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/86" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">86</div></td><td><div class="lv-data">IPCR - Percentual no mês, para o índice geral, grupos, subgrupos, itens e subitens de produtos e serviços (série encerrada)<span class="texto-disponibilidade">julho 1994 a junho 1995</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="87"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/87" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">87</div></td><td><div class="lv-data">Receita operacional líquida e subvenções das empresas de serviços de engenharia e arquitetura com 20 ou mais pessoas ocupadas, segundo os produtos/serviços prestados<span class="texto-disponibilidade">2003 a 2007</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="89"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/89" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">89</div></td><td><div class="lv-data">IPCR - Peso no mês, para o índice geral, grupos, subgrupos, itens e subitens de produtos e serviços (série encerrada)<span class="texto-disponibilidade">julho 1994 a junho 1995</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="90"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/90" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">90</div></td><td><div class="lv-data">IRSM - Percentual no mês, para o índice geral, grupos, subgrupos, itens e subitens de produtos e serviços (série encerrada)<span class="texto-disponibilidade">janeiro 1992 a maio 1992, outubro 1992 a abril 1993, agosto 1993 a junho 1994</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="91"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/91" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">91</div></td><td><div class="lv-data">IRSM - Peso no mês, para o índice geral, grupos, subgrupos, itens e subitens de produtos e serviços (série encerrada)<span class="texto-disponibilidade">janeiro 1992 a maio 1992, outubro 1992 a abril 1993, agosto 1993 a junho 1994</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="92"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/92" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">92</div></td><td><div class="lv-data">Taxa de rotatividade por gêneros da indústria de transformação<span class="texto-disponibilidade">janeiro 1985 a abril 2001</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="93"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/93" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">93</div></td><td><div class="lv-data">Taxa de rotatividade por classes de indústrias<span class="texto-disponibilidade">janeiro 1985 a abril 2001</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="94"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/94" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">94</div></td><td><div class="lv-data">Vacas ordenhadas<span class="texto-disponibilidade">1974 a 2024</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="95"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/95" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">95</div></td><td><div class="lv-data">Ovinos tosquiados<span class="texto-disponibilidade">1974 a 2024</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="96"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/96" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">96</div></td><td><div class="lv-data">Mulheres de 10 anos ou mais de idade, total e que tiveram filhos, e os filhos tidos pelas mulheres de 10 anos ou mais de idade, os nascidos vivos, os nascidos vivos no período de referência de 12 meses, os nascidos mortos e os que estavam vivos na data de referência, segundo a situação do domicílio, a cor ou raça, o estado civil, o nível de instrução e os grupos de idade das mulheres<span class="texto-disponibilidade">2010</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="97"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/97" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">97</div></td><td><div class="lv-data">Mulheres de 10 anos ou mais de idade, que tiveram filhos nascidos vivos, por número de filhos tidos nascidos vivos, segundo a situação do domicílio, o nível de instrução, o estado civil, os grupos de idade das mulheres e a religião<span class="texto-disponibilidade">2010</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="98"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/98" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">98</div></td><td><div class="lv-data">Filhos tidos nascidos vivos pelas mulheres de 10 anos ou mais de idade, segundo a situação do domicílio, a cor ou raça, o nível de instrução, o estado civil, a condição de atividade e os grupos de idade das mulheres<span class="texto-disponibilidade">2010</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="100"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/100" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">100</div></td><td><div class="lv-data">Leite recebido em pó<span class="texto-disponibilidade">janeiro 1989 a dezembro 1996</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="101"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/101" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">101</div></td><td><div class="lv-data">Leite recebido concentrado<span class="texto-disponibilidade">janeiro 1989 a dezembro 1996</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="102"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/102" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">102</div></td><td><div class="lv-data">Mulheres de 10 anos ou mais de idade, que viviam em união conjugal, total e que tiveram filhos, e os filhos tidos pelas mulheres de 10 anos ou mais de idade, que viviam em união conjugal, os nascidos vivos, os nascidos vivos no período de referência de 12 meses, nascidos mortos e os que estavam vivos na data de referência, segundo a situação do domicílio, a natureza da união conjugal e os grupos de idade das mulheres<span class="texto-disponibilidade">2010</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="103"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/103" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">103</div></td><td><div class="lv-data">Mulheres de 10 anos ou mais de idade, que viviam em união conjugal e tiveram filhos nascidos vivos, por número de filhos tidos nascidos vivos, segundo a situação do domicílio, a natureza da união conjugal e os grupos de idade das mulheres<span class="texto-disponibilidade">2010</span></div></td></tr></tbody></table><table class="lv-block" style="min-width: 100%; top: 4528px;"><tbody><tr class="lv-row item-acervo fundo-alternado" data-id="104" style="height: 45px;"><td style="min-width: 28px; width: 28px;"><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/104" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td style="min-width: 33px; width: 33px;"><div class="lv-data">104</div></td><td style="min-width: 3195px;"><div class="lv-data">Destino do leite total<span class="texto-disponibilidade">janeiro 1989 a dezembro 1996</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="105"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/105" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">105</div></td><td><div class="lv-data">Filhos tidos nascidos vivos das mulheres de 10 anos ou mais de idade, que viviam em união conjugal, segundo a situação do domicílio, a natureza da união conjugal e os grupos de idade das mulheres<span class="texto-disponibilidade">2010</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="107"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/107" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">107</div></td><td><div class="lv-data">Mulheres de 10 anos ou mais de idade, que tiveram filhos nascidos vivos, por número de filhos tidos nascidos vivos, segundo a situação do domicílio, a condição de atividade na semana de referência e os grupos de idade das mulheres<span class="texto-disponibilidade">2010</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="108"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/108" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">108</div></td><td><div class="lv-data">Mulheres de 10 anos ou mais de idade, residentes em domicílios particulares, exceto as cuja condição no domicílio era pensionista, empregada ou seu parente, total e que tiveram filhos, e filhos tidos pelas mulheres de 10 anos ou mais de idade, residentes em domicílios particulares, nascidos vivos, nascidos vivos no período de referência de 12 meses, nascidos mortos e os que estavam vivos na data de referência, segundo a situação, as classes de rendimento nominal mensal domiciliar e os grupos de idade<span class="texto-disponibilidade">2010</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="109"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/109" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">109</div></td><td><div class="lv-data">Produção física industrial, por nível-100 e tipo de índice (série encerrada em janeiro de 2004)<span class="texto-disponibilidade">janeiro 1991 a janeiro 2004</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="117"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/117" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">117</div></td><td><div class="lv-data">IPCAE - Série histórica com número-índice, variação percentual no mês e variações percentuais acumuladas em 3 meses, 6 meses, no ano e em 12 meses (série encerrada)<span class="texto-disponibilidade">novembro 1991 a maio 1992, outubro 1992 a dezembro 2010</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="118"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/118" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">118</div></td><td><div class="lv-data">IPCA dessazonalizado - Série histórica com a variação mensal (a partir de janeiro/1998)<span class="texto-disponibilidade">janeiro 1998 a março 2026</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="135"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/135" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">135</div></td><td><div class="lv-data">População residente por religião, cor ou raça e sexo<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="136"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/136" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">136</div></td><td><div class="lv-data">População residente, por cor ou raça<span class="texto-disponibilidade">1991, 2000, 2010</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="137"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/137" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">137</div></td><td><div class="lv-data">População residente, por religião<span class="texto-disponibilidade">1991, 2000, 2010</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="138"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/138" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">138</div></td><td><div class="lv-data">População residente por grupos de idade, tipo de deficiência, sexo e situação<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="139"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/139" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">139</div></td><td><div class="lv-data">População residente por grupos de idade, religião, sexo e situação<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="140"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/140" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">140</div></td><td><div class="lv-data">População residente por grupos de idade, cor ou raça, sexo e situação<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="141"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/141" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">141</div></td><td><div class="lv-data">Pessoas de 5 anos ou mais por grupos de idade, cor ou raça, alfabetização e sexo<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="142"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/142" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">142</div></td><td><div class="lv-data">Pessoas de 5 anos ou mais por grupos de idade, anos de estudo, sexo e situação<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="143"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/143" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">143</div></td><td><div class="lv-data">Pessoas de 5 anos ou mais por grupos de idade, anos de estudo, cor ou raça e sexo<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="144"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/144" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">144</div></td><td><div class="lv-data">Estudantes de 5 anos ou mais por grau e série que frequentavam e grupos de idade<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="145"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/145" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">145</div></td><td><div class="lv-data">Pessoas de 10 anos ou mais com pelo menos um curso completo por grupos de idade, grau do curso completo mais elevado, sexo e situação<span class="texto-disponibilidade">1991</span></div></td></tr><tr class="lv-row item-acervo fundo-alternado" style="height: 45px;" data-id="146"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/146" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">146</div></td><td><div class="lv-data">Pessoas de 10 anos ou mais de idade por grupos de anos de estudo<span class="texto-disponibilidade">1991, 2000</span></div></td></tr><tr class="lv-row item-acervo" style="height: 45px;" data-id="148"><td><div class="lv-data"><a title="Consultar tabela" class="link-tabela" href="/Tabela/148" target="_blank"><i class="glyphicon glyphicon-new-window"></i></a></div></td><td><div class="lv-data">148</div></td><td><div class="lv-data">Estudantes de 5 anos ou mais por grau e série que frequentavam<span class="texto-disponibilidade">1991</span></div></td></tr></tbody></table></div></div></div></div>
+        <div id="contagem-linhas">9.239 / 9.239 linhas</div>
+        <div id="ferramentas-inferior" class="ferramentas-editor">
+            <div class="ferramentas-expand">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+                    <input id="campo-busca-texto" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+    </div></div></div><div class="janela-footer"></div></div></div></div>
+
+    
+
+</div>
+
+
+<script src="/Scripts/jquery.ui.componentes.js"></script>
+<script src="/Scripts/sidra-editor.js"></script>
+<script src="/Scripts/editor-acervo.js"></script>
+<script src="/Scripts/checkList.js"></script>
+<script src="/Scripts/jquery.listView.js"></script>
+<script src="/Scripts/jquery.exportaExcel.js"></script>
+<script src="/Scripts/jstorage.min.js"></script>
+
+
+
+    <iframe class="print-frame"></iframe>
+
+    <div id="pesquisas-menu-modal" class="modal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h5 class="modal-title">Pesquisas</h5>
+                </div>
+                <div class="modal-body">
+                        <div class="pesquisas-menu-arvore">
+
+        <div class="pesquisas-menu-form">
+            <input type="text" placeholder="Filtro" class="form-control">
+        </div>
+
+        <ul>
+            <li style="display: block;">
+                <span class="expande">Indicadores</span>
+                <ul style="display: block;">
+                    <li style="display: block;">
+                        <span class="expande">Trabalho e Rendimento</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/pnadcm">Pesquisa Nacional por Amostra de Domicílios Continua Mensal - PNADCM</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pnadct">Pesquisa Nacional por Amostra de Domicílios Continua Trimestral - PNADCT</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pme">Pesquisa Mensal de Emprego - PME (extinta)</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Agropecuária</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/estoques">Pesquisa de Estoques - ESTOQUES</a></li>
+                            <li style="display: block;"><a href="/pesquisa/lspa">Levantamento Sistemático da Produção Agrícola - LSPA</a></li>
+                            <li style="display: block;"><a href="/pesquisa/abate">Pesquisa Trimestral do Abate de Animais - ABATE</a></li>
+                            <li style="display: block;"><a href="/pesquisa/couro">Pesquisa Trimestral do Couro - COURO</a></li>
+                            <li style="display: block;"><a href="/pesquisa/leite">Pesquisa Trimestral do Leite - LEITE</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pog">Produção de Ovos de Galinha - POG</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Indústria</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/pimes">Pesquisa Industrial Mensal de Emprego e Salário - PIMES (extinta)</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pim-pf-brasil">Pesquisa Industrial Mensal - Produção Física - PIM-PF-Brasil</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pim-pf-regional">Pesquisa Industrial Mensal - Produção Física - PIM-PF-Regional</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Comércio</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/pmc">Pesquisa Mensal de Comércio - PMC</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Serviços</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/pms">Pesquisa Mensal de Serviços - PMS</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Índices, Preços e Custos</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/ipp">Índice de Preços ao Produtor - IPP</a></li>
+                            <li style="display: block;"><a href="/pesquisa/sinapi">Sistema Nacional de Pesquisa de Custos e Índices da Construção Civil - SINAPI</a></li>
+                            <li style="display: block;"><a href="/pesquisa/snipc">Índices de Preços ao Consumidor (IPCA, INPC e IPCA15) - SNIPC</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Sistema de Contas Nacionais Trimestrais</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/cnt">Contas Nacionais Trimestrais - CNT</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;"><a href="/pesquisa/ods">Objetivos de Desenvolvimento Sustentável - ODS</a></li>
+                </ul>
+            </li>
+
+
+            <li style="display: block;">
+                <span class="expande">População</span>
+                <ul style="display: block;">
+                    <li style="display: block;">
+                        <a href="/pesquisa/censo-demografico">Censo Demográfico - Censo-Demografico</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/registro-civil">Estatísticas do Registro Civil - Registro-Civil</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/pnadca">Pesquisa Nacional por Amostra de Domicílios Contínua Anual - PNADCA</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/pnad">Pesquisa Nacional por Amostra de Domicílios - PNAD</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/estimapop">Estimativas de População - EstimaPop</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/projecao-da-populacao">Projeções da População</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/pof">Pesquisa de Orçamentos Familiares - POF</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/pns">Pesquisa Nacional de Saúde - PNS</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/ams">Pesquisa Assistência Médico-Sanitária - AMS</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/pnsb">Pesquisa Nacional de Saneamento Básico - PNSB</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/pense">Pesquisa Nacional de Saúde do Escolar - PeNSE</a>
+                    </li>
+                    <li style="display: block;">
+                        <a href="/pesquisa/munic">Pesquisa de Informações Básicas Municipais - MUNIC</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li style="display: block;">
+                <span class="expande">Economia</span>
+                <ul style="display: block;">
+                    <li style="display: block;">
+                        <span class="expande">Indústria</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/paic">Pesquisa Anual da Indústria da Construção - PAIC</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pia-empresa">Pesquisa Industrial Anual - PIA-Empresa</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pia-produto">Pesquisa Industrial Anual - PIA-Produto</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Serviços</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/pas">Pesquisa Anual de Serviços - PAS</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pspp">Pesquisa de Serviços de Publicidade e Promoção - PSPP</a></li>
+                            <li style="display: block;"><a href="/pesquisa/psti">Pesquisa de Serviços de Tecnologia da Informação - PSTI</a></li>
+                            <li style="display: block;"><a href="/pesquisa/psh">Pesquisa de Serviços de Hospedagem - PSH</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Agropecuária</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/censo-agropecuario">Censo Agropecuário - Censo-Agropecuario</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pam">Produção Agrícola Municipal - PAM</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pevs">Produção da Extração Vegetal e da Silvicultura - PEVS</a></li>
+                            <li style="display: block;"><a href="/pesquisa/ppm">Pesquisa da Pecuária Municipal - PPM</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Comércio</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/pac">Pesquisa Anual de Comércio - PAC</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Inovação e Empreendedorismo</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/pintec">Pesquisa de Inovação - PINTEC</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;">
+                        <span class="expande">Contas Nacionais</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/cna">Contas Nacionais Anuais - CNA</a></li>
+                            <li style="display: block;"><a href="/pesquisa/pib-munic">Produto Interno Bruto dos Municípios - PIB-Munic</a></li>
+                            <li style="display: block;"><a href="/pesquisa/contas-economicas-ambientais">Contas Econômicas Ambientais</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;"><a href="/pesquisa/cempre">Cadastro Central de Empresas - CEMPRE</a></li>
+                    <li style="display: block;"><a href="/pesquisa/demografia-das-empresas">Demografia das Empresas - Demografia-das-Empresas</a></li>
+                    <li style="display: block;"><a href="/pesquisa/fasfil">Fundações Privadas e Associações sem Fins Lucrativos - FASFIL</a></li>
+                    <li style="display: block;"><a href="/pesquisa/cadastros-de-mei">Estatísticas dos Cadastros de Microempreendedores Individuais (MEI) </a></li>
+                </ul>
+            </li>
+
+            <li style="display: block;">
+                <span class="expande">Meio Ambiente</span>
+                <ul style="display: block;">
+                    <li style="display: block;">
+                        <span class="expande">Contas Econômicas Ambientais</span>
+                        <ul style="display: block;">
+                            <li style="display: block;"><a href="/pesquisa/contas-economicas-ambientais/contas-da-terra">Contas Econômicas Ambientais da Terra</a></li>
+                            <li style="display: block;"><a href="/pesquisa/contas-economicas-ambientais/contas-economicas-da-agua">Contas Econômicas Ambientais da Água - CEAA</a></li>
+                            <li style="display: block;"><a href="/pesquisa/contas-economicas-ambientais/contas-economicas-de-energia">Contas Econômicas Ambientais de Energia - CEAE</a></li>
+                            <li style="display: block;"><a href="/pesquisa/contas-economicas-ambientais/contas-de-ecossistemas">Contas de Ecossistemas: O Uso da Terra nos Biomas</a></li>
+                            <li style="display: block;"><a href="/pesquisa/contas-economicas-ambientais/contas-de-especies">Contas de Ecossistemas: Espécies Ameaçadas</a></li>
+                            <li style="display: block;"><a href="/pesquisa/contas-economicas-ambientais/contribuicao-dos-polinizadores">Contribuição dos Polinizadores para as Produções Agrícola e Extrativista do Brasil</a></li>
+                        </ul>
+                    </li>
+                    <li style="display: block;"><a href="/pesquisa/ids">Indicadores de Desenvolvimento Sustentável - IDS</a></li>
+                    <li style="display: block;"><a href="/pesquisa/areas-urbanizadas">Áreas Urbanizadas</a></li>
+                </ul>
+            </li>
+
+        </ul>
+
+    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal sidra-modal fade" id="sidra-modal" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    
+
+        <div class="areausuario-login-container" data-target=".areausuario-perfil-link" data-link=".areausuario-link" data-modo="modal">
+
+        <div class="areausuario-login-arrow">
+        </div>
+
+        <div class="areausuario-login">
+            <div class="login-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4>Acessar sua Conta</h4>
+            </div>
+
+
+            <div class="login-body">
+                <ul class="opcao-login">
+                    <li class="active" data-target=".formulario-sidra">Sidra</li>
+                    <li data-target=".formulario-ibge-mfa">IBGE</li>
+                </ul>
+
+                <div class="formulario formulario-sidra">
+                    <form class="login-ajax-form" method="post" action="/perfil/login/sidra">
+                        <input type="hidden" name="ReturnUrl">
+
+                        <span data-validator-for="Email">
+                        </span>
+                        <input placeholder="E-mail" name="Email" data-val-required="O campo Email é obrigatório." class="form-control primeiro" type="text">
+
+                        <div class="separador"></div>
+
+                        <span data-validator-for="Senha"></span>
+                        <input placeholder="Senha" name="Senha" data-val-required="O campo Senha é obrigatório." class="form-control" type="password">
+
+                        <div class="separador"></div>
+
+                        <label class="checkbox-inline"><input name="ManterContectado" type="checkbox"> Manter-me conectado</label>
+
+                        <div class="separador"></div>
+
+                        <input type="submit" value="Entrar" class="btn btn-sm btn-success login">
+
+                        <div class="separador"></div>
+
+                        <a class="esqueci" href="/perfil/usuario/recuperarsenha">Esqueci minha Senha</a>
+                        <a class="cadastro" href="/perfil/usuario/cadastro">Cadastre-se</a>
+                    </form>
+
+                    <div class="redes">
+                        <div class="redes-titulo">
+                            Acesse pelas redes sociais
+                        </div>
+                        <div class="icons">
+                            <a class="login-externo" data-action="Facebook" href="#" title="Facebook"><img class="icon-rede" src="/Content/imagens/login/facebook.png"></a>
+                            <a class="login-externo" data-action="Google" href="#" title="Google"><img class="icon-rede" src="/Content/imagens/login/google.png"></a>
+                            <a class="login-externo" data-action="Microsoft" href="#" title="Microsoft"><img class="icon-rede" src="/Content/imagens/login/microsoft.png"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="formulario formulario-ibge-mfa" style="display: none">
+                        <form class="login-ajax-form" method="post" action="/perfil/login/ibgemfa">
+                            <input type="hidden" name="ReturnUrl">
+
+
+                            <span data-validator-for="Usuario"></span>
+                            <input placeholder="Usuário IBGE" name="Usuario" data-val-required="O campo Email é obrigatório." class="form-control primeiro" type="text">
+
+                            <div class="separador"></div>
+
+                            <span data-validator-for="Senha"></span>
+                            <input placeholder="Senha" name="Senha" data-val-required="O campo Senha é obrigatório." class="form-control" type="password">
+
+                            <div class="separador"></div>
+                            <label class="checkbox-inline"><input type="checkbox"> Manter-me conectado</label>
+
+                            <div class="separador"></div>
+                            <input type="submit" value="Entrar" class="btn btn-sm btn-success login">
+
+                            <div class="separador"></div>
+                            <span>Utilize seu login de rede</span>
+                        </form>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>

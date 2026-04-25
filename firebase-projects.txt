@@ -1,0 +1,77 @@
+- Preparing the list of your Firebase projects
+✔ Preparing the list of your Firebase projects
+{
+  "status": "success",
+  "result": [
+    {
+      "projectId": "afasb-painel",
+      "projectNumber": "54948235134",
+      "displayName": "afasb-painel",
+      "name": "projects/afasb-painel",
+      "resources": {
+        "hostingSite": "afasb-painel",
+        "realtimeDatabaseInstance": "afasb-painel-default-rtdb",
+        "locationId": "southamerica-east1"
+      },
+      "state": "ACTIVE",
+      "etag": "1_801b075a-ddba-4711-bcee-59e2a3324d9e"
+    },
+    {
+      "projectId": "base-de-contatos-e834a",
+      "projectNumber": "758600957177",
+      "displayName": "ProjectsPortfolio",
+      "name": "projects/base-de-contatos-e834a",
+      "resources": {
+        "hostingSite": "base-de-contatos-e834a"
+      },
+      "state": "ACTIVE",
+      "etag": "1_7cb7132b-8c7f-40e1-b0e8-6290d9e5a3ac"
+    },
+    {
+      "projectId": "lp---tratornew",
+      "projectNumber": "292179723747",
+      "displayName": "LP - Tratornew",
+      "name": "projects/lp---tratornew",
+      "resources": {
+        "hostingSite": "lp---tratornew"
+      },
+      "state": "ACTIVE",
+      "etag": "1_aad84d2a-e495-4796-8782-48865273f63c"
+    },
+    {
+      "projectId": "neyhermann-oratoria",
+      "projectNumber": "363152234540",
+      "displayName": "Ney Hermann",
+      "name": "projects/neyhermann-oratoria",
+      "resources": {
+        "hostingSite": "neyhermann-oratoria"
+      },
+      "state": "ACTIVE",
+      "etag": "1_0f227005-5221-4ad0-a67c-96468d023567"
+    },
+    {
+      "projectId": "professorbrai-6a82f",
+      "projectNumber": "313031006268",
+      "displayName": "professorBraille",
+      "name": "projects/professorbrai-6a82f",
+      "resources": {
+        "hostingSite": "professorbrai-6a82f",
+        "realtimeDatabaseInstance": "professorbrai-6a82f",
+        "locationId": "us-central"
+      },
+      "state": "ACTIVE",
+      "etag": "1_239b0abd-3464-432d-8b78-67e594b88585"
+    },
+    {
+      "projectId": "rd-filmmaker",
+      "projectNumber": "22061591636",
+      "displayName": "RD Filmmaker",
+      "name": "projects/rd-filmmaker",
+      "resources": {
+        "hostingSite": "rd-filmmaker"
+      },
+      "state": "ACTIVE",
+      "etag": "1_a732d200-5525-437c-94d0-04d30795b48d"
+    }
+  ]
+}

@@ -1,19 +1,23 @@
-const baseUrl = import.meta.env.VITE_FIREBASE_FUNCTIONS_URL ?? '';
+// Caminho: src/services/firebase.ts
+import { initializeApp } from "firebase/app";
+import { getFunctions, connectFunctionsEmulator } from "firebase/functions";
+import { getFirestore } from "firebase/firestore";
 
-if (!baseUrl) {
-  console.warn('VITE_FIREBASE_FUNCTIONS_URL is not defined. Cloud Functions calls will fail without a valid URL.');
-}
-
-export const firebaseFunctionsUrl = baseUrl.replace(/\/+$/, '');
-
-export const buildFunctionUrl = (name: string, queryParams?: Record<string, string | number | boolean>) => {
-  const url = new URL(`${firebaseFunctionsUrl}/${name}`);
-
-  if (queryParams) {
-    Object.entries(queryParams).forEach(([key, value]) => {
-      url.searchParams.set(key, String(value));
-    });
-  }
-
-  return url.toString();
+// As variáveis devem vir do seu .env
+const firebaseConfig = {
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
+
+export const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+export const functions = getFunctions(app);
+
+// Conecta o frontend às funções rodando localmente no seu computador (se em modo dev)
+if (import.meta.env.DEV) {
+    connectFunctionsEmulator(functions, "127.0.0.1", 5001);
+}

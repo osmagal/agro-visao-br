@@ -22,8 +22,8 @@ type EChartsOption = echarts.ComposeOption<
 
 interface TotalRevenueChartProps {
   data: {
-    'Online Sales': number[];
-    'Offline Sales': number[];
+    'Irrigated Crops': number[];
+    'Rainfed Crops': number[];
   };
   style?: {
     height?: number;
@@ -46,7 +46,7 @@ const TotalRevenueChart = ({ data, style }: TotalRevenueChartProps) => {
       },
 
       legend: {
-        data: ['Online Sales', 'Offline Sales'],
+        data: ['Irrigated Crops', 'Rainfed Crops'],
         left: 'center',
         bottom: 0,
         icon: 'circle',
@@ -98,18 +98,18 @@ const TotalRevenueChart = ({ data, style }: TotalRevenueChartProps) => {
 
       series: [
         {
-          name: 'Online Sales',
+          name: 'Irrigated Crops',
           type: 'bar',
-          data: data['Online Sales'],
+          data: data['Irrigated Crops'],
           itemStyle: {
             borderRadius: 2,
           },
           barCategoryGap: '65%',
         },
         {
-          name: 'Offline Sales',
+          name: 'Rainfed Crops',
           type: 'bar',
-          data: data['Offline Sales'],
+          data: data['Rainfed Crops'],
           itemStyle: {
             borderRadius: 2,
           },

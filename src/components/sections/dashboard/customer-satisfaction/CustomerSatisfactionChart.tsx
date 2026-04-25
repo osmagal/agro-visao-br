@@ -31,8 +31,8 @@ type EChartsOption = echarts.ComposeOption<
 interface CustomerSatisfactionChart {
   chartRef: MutableRefObject<EChartsReactCore | null>;
   data: {
-    'last month': number[];
-    'this month': number[];
+    'last harvest': number[];
+    'current harvest': number[];
   };
   style?: {
     height?: number;
@@ -99,7 +99,7 @@ const CustomerSatisfactionChart = ({ chartRef, data, style }: CustomerSatisfacti
           emphasis: {
             focus: 'series',
           },
-          data: data['last month'],
+          data: data['last harvest'],
           symbol: 'circle',
           symbolSize: 8,
         },
@@ -123,7 +123,7 @@ const CustomerSatisfactionChart = ({ chartRef, data, style }: CustomerSatisfacti
           emphasis: {
             focus: 'series',
           },
-          data: data['this month'],
+          data: data['current harvest'],
           symbol: 'circle',
           symbolSize: 8,
         },

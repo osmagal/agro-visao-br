@@ -31,9 +31,9 @@ type EChartsOption = echarts.ComposeOption<
 interface VisitorInsightsChartProps {
   chartRef: MutableRefObject<EChartsReactCore | null>;
   data: {
-    'loyal customers': number[];
-    'new customers': number[];
-    'unique customers': number[];
+    'soy yield': number[];
+    'corn yield': number[];
+    'wheat yield': number[];
   };
   style?: {
     height: number;
@@ -105,9 +105,9 @@ const VisitorInsightsChart = ({ chartRef, data, style }: VisitorInsightsChartPro
 
       series: [
         {
-          name: 'Loyal Customers',
+          name: 'Soy Yield',
           type: 'line',
-          data: data['loyal customers'],
+          data: data['soy yield'],
           smooth: true,
           symbol: 'circle',
           showSymbol: false,
@@ -118,9 +118,9 @@ const VisitorInsightsChart = ({ chartRef, data, style }: VisitorInsightsChartPro
           },
         },
         {
-          name: 'New Customers',
+          name: 'Corn Yield',
           type: 'line',
-          data: data['new customers'],
+          data: data['corn yield'],
           smooth: true,
           symbol: 'circle',
           showSymbol: false,
@@ -130,9 +130,9 @@ const VisitorInsightsChart = ({ chartRef, data, style }: VisitorInsightsChartPro
           },
         },
         {
-          name: 'Unique Customers',
+          name: 'Wheat Yield',
           type: 'line',
-          data: data['unique customers'],
+          data: data['wheat yield'],
           smooth: true,
           symbol: 'circle',
           showSymbol: false,

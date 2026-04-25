@@ -1,78 +1,82 @@
-import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
+// Caminho: functions/src/index.ts
+import { onRequest } from "firebase-functions/v2/https";
+import * as logger from "firebase-functions/logger";
+import * as admin from "firebase-admin";
+import axios from "axios";
 
+// Inicializa o app admin para ter acesso irrestrito ao Firestore interno
 admin.initializeApp();
-
 const db = admin.firestore();
-const CACHE_COLLECTION = 'ibge-cache';
-const CACHE_TTL_SECONDS = 3600;
 
-const createCacheKey = (path: string, params: Record<string, string | string[]>) => {
-  const sortedKeys = Object.keys(params).sort();
-  const normalizedParams = sortedKeys
-    .map((key) => {
-      const value = params[key];
-      return Array.isArray(value)
-        ? `${key}=${value.sort().join(',')}`
-        : `${key}=${value}`;
-    })
-    .join('&');
-  return `${path}?${normalizedParams}`;
-};
+// Configurações do Cache
+const CACHE_COLLECTION = "ibge_cache";
+const CACHE_EXPIRATION_DAYS = 30; // Dados do IBGE mudam devagar (anual/mensal)
 
-export const querySidra = functions
-  .region('us-central1')
-  .https.onRequest(async (req, res) => {
-    try {
-      const path = Array.isArray(req.query.path) ? req.query.path[0] : String(req.query.path || 'values');
-      const params: Record<string, string | string[]> = {};
+export const querySidra = onRequest(
+    {
+        cors: true, // Permite requisições do seu front-end
+        timeoutSeconds: 60,
+    },
+    async (req, res) => {
+        try {
+            const { agregado, periodos, localidades, variaveis, classificacao } = req.query;
 
-      for (const [key, value] of Object.entries(req.query)) {
-        if (key === 'path') continue;
-        params[key] = value as string | string[];
-      }
+            if (!agregado) {
+                res.status(400).json({ error: "O parâmetro 'agregado' é obrigatório." });
+                return;
+            }
 
-      const cacheKey = createCacheKey(path, params);
-      const cacheRef = db.collection(CACHE_COLLECTION).doc(cacheKey);
-      const cacheDoc = await cacheRef.get();
+            // 1. Montar a URL da API oficial do IBGE
+            let ibgeUrl = `https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}`;
+            if (periodos) ibgeUrl += `/periodos/${periodos}`;
+            if (variaveis) ibgeUrl += `/variaveis/${variaveis}`;
 
-      if (cacheDoc.exists) {
-        const cached = cacheDoc.data();
-        const expiresAt = cached?.expiresAt as admin.firestore.Timestamp | undefined;
+            const queryParams = new URLSearchParams();
+            if (localidades) queryParams.append("localidades", localidades as string);
+            if (classificacao) queryParams.append("classificacao", classificacao as string);
 
-        if (expiresAt?.toMillis() > Date.now()) {
-          return res.status(200).json({ source: 'cache', data: cached.payload });
+            if (queryParams.toString()) {
+                ibgeUrl += `?${queryParams.toString()}`;
+            }
+
+            // 2. Criar uma chave de cache baseada na URL
+            // Convertendo em base64 e limpando para formar um ID válido no Firestore
+            const cacheKey = Buffer.from(ibgeUrl).toString('base64').replace(/[/+=]/g, '_');
+            const cacheRef = db.collection(CACHE_COLLECTION).doc(cacheKey);
+            const cacheDoc = await cacheRef.get();
+
+            // 3. Verificar o Firestore (Cache Hit)
+            if (cacheDoc.exists) {
+                const data = cacheDoc.data();
+                const timestamp = data?.timestamp?.toDate();
+                const diffDays = (new Date().getTime() - timestamp.getTime()) / (1000 * 3600 * 24);
+
+                if (diffDays < CACHE_EXPIRATION_DAYS) {
+                    logger.info("Cache hit!", { cacheKey });
+                    // Retorna direto do banco de dados (muito rápido e gratuito no Firebase)
+                    res.status(200).json({ source: "cache", data: data?.payload });
+                    return;
+                }
+            }
+
+            // 4. Caso não tenha cache (Cache Miss), consultar o IBGE
+            logger.info("Cache miss. Consultando IBGE...", { ibgeUrl });
+            const response = await axios.get(ibgeUrl);
+            const payload = response.data;
+
+            // 5. Salvar resultado no Firestore sem bloquear o retorno ao usuário
+            cacheRef.set({
+                payload,
+                url: ibgeUrl,
+                timestamp: admin.firestore.FieldValue.serverTimestamp()
+            }).catch(err => logger.error("Erro ao escrever cache:", err));
+
+            // 6. Retornar dados frescos ao Frontend
+            res.status(200).json({ source: "ibge_api", data: payload });
+
+        } catch (error: any) {
+            logger.error("Erro BFF IBGE:", error.message);
+            res.status(500).json({ error: "Erro ao consultar base governamental." });
         }
-      }
-
-      const queryString = new URLSearchParams();
-      Object.entries(params).forEach(([key, value]) => {
-        if (Array.isArray(value)) {
-          value.forEach((item) => queryString.append(key, item));
-        } else {
-          queryString.append(key, value);
-        }
-      });
-
-      const url = `https://apis.sidra.ibge.gov.br/${path}?${queryString.toString()}`;
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error(`IBGE request failed with status ${response.status}`);
-      }
-
-      const payload = await response.json();
-      await cacheRef.set({
-        path,
-        params,
-        payload,
-        expiresAt: admin.firestore.Timestamp.fromMillis(Date.now() + CACHE_TTL_SECONDS * 1000),
-        updatedAt: admin.firestore.Timestamp.now(),
-      });
-
-      return res.status(200).json({ source: 'ibge', data: payload });
-    } catch (error) {
-      console.error('querySidra error', error);
-      return res.status(500).json({ error: String(error) });
     }
-  });
+);

@@ -41,3 +41,32 @@ Visualização da Arquitetura AgroVisão
 Para ajudar a entender como esses componentes do Firebase se conectam ao IBGE, preparei este diagrama interativo. Você pode simular o fluxo de uma requisição e ver como o cache no Firestore otimiza o processo.
 
 Utilize a estrutura do modelo disponível no diretório deste projeto como base para este projeto adequando as informações e escopo.
+
+## Arquitetura AgroVisão Brasil (Firebase + IBGE)
+
+```mermaid
+flowchart TD
+    A[Usuário acessa agro-visao-br.web.app] -->|Solicita dados de produção| B[Firebase Hosting (Frontend React)]
+    B -->|Chama| C[Cloud Functions (BFF)]
+    C --> D{Cache Firestore?}
+    D -- Sim --> E[Retorna dados do Firestore]
+    D -- Não --> F[Consulta API IBGE SIDRA]
+    F --> G[Formata dados]
+    G --> H[Salva no Firestore]
+    H --> I[Retorna dados ao Frontend]
+    E --> I
+    C --> J[App Check]
+    J -.->|Protege Functions| C
+    style J stroke-dasharray: 5 5
+    style D fill:#f9f,stroke:#333,stroke-width:2
+    style F fill:#bbf,stroke:#333,stroke-width:2
+    style H fill:#bbf,stroke:#333,stroke-width:2
+    style E fill:#bfb,stroke:#333,stroke-width:2
+    style I fill:#bfb,stroke:#333,stroke-width:2
+    style G fill:#bbf,stroke:#333,stroke-width:2
+    style C fill:#ffd,stroke:#333,stroke-width:2
+    style B fill:#ffd,stroke:#333,stroke-width:2
+    style A fill:#ffd,stroke:#333,stroke-width:2
+```
+
+> O fluxo acima mostra como o frontend, backend serverless e o cache do Firestore se conectam ao IBGE, otimizando performance e custos.

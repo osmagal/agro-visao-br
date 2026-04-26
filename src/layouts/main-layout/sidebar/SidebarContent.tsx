@@ -2,8 +2,12 @@ import { Box, List, Stack, Toolbar } from '@mui/material';
 import sitemap from 'routes/sitemap';
 import LogoHeader from './LogoHeader';
 import NavItem from './NavItem';
+import { useTranslation } from 'react-i18next';
 
 const NavItems = () => {
+  // 1. O hook de tradução vem para cá, onde a lista é iterada
+  const { t } = useTranslation();
+
   return (
     <List
       sx={{
@@ -13,13 +17,23 @@ const NavItems = () => {
       }}
     >
       {sitemap.map((navItem) => (
-        <NavItem key={navItem.id} item={navItem} />
+        // 2. Interceptamos o item e traduzimos a propriedade de texto dele
+        <NavItem
+          key={navItem.id}
+          item={{
+            ...navItem,
+            // ATENÇÃO: Troque "name" para a propriedade correta que você usa no sitemap.ts (pode ser "title", "label", etc.)
+            name: t(navItem.name)
+          }}
+        />
       ))}
     </List>
   );
 };
 
 const SidebarContent = () => {
+  // O hook foi removido daqui pois não há textos soltos neste bloco
+
   return (
     <>
       <Toolbar disableGutters>

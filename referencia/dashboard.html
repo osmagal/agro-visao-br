@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-slate-50" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgroVisão Brasil - Dashboard</title>
+<!-- Tailwind CSS CDN with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts for Inter-like typography -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style data-purpose="custom-styles">
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .chart-grid {
+      background-image: linear-gradient(to right, #f1f5f9 1px, transparent 1px),
+                        linear-gradient(to bottom, #f1f5f9 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    /* Simple SVG Map styling for Brazil */
+    .brazil-map-path {
+      stroke: #fff;
+      stroke-width: 1;
+    }
+    /* Custom scrollbar for sidebar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="h-full overflow-hidden flex">
+<!-- BEGIN: Sidebar -->
+<aside class="w-64 bg-white border-r border-slate-200 flex flex-col flex-shrink-0" data-purpose="sidebar">
+<div class="p-6">
+<div class="flex items-center gap-3">
+<!-- Logo Placeholder -->
+<div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center overflow-hidden"><svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg></div>
+<h1 class="text-xl font-bold text-slate-800">AgroVisão</h1>
+</div>
+</div>
+<nav class="flex-1 px-4 py-2 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2 text-white bg-blue-600 rounded-lg group transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 rounded-lg group transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Culturas</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 rounded-lg group transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Regiões</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 rounded-lg group transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Relatórios</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-50 rounded-lg group transition-colors" href="#">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Configurações</span>
+</a>
+</nav>
+</aside>
+<!-- END: Sidebar -->
+<main class="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
+<!-- BEGIN: TopBar -->
+<header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 flex-shrink-0" data-purpose="topbar">
+<div class="w-1/3">
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+<svg class="h-5 w-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</span>
+<input class="block w-full pl-10 pr-3 py-2 border border-slate-200 rounded-lg bg-slate-50 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative text-slate-500 hover:text-slate-600">
+<svg class="h-6 w-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span class="absolute top-0 right-0 block h-2.5 w-2.5 rounded-full bg-red-500 ring-2 ring-white"></span>
+</button>
+<div class="flex items-center gap-3 pl-6 border-l border-slate-200">
+<img alt="User Profile" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZWZ7jbjdqouJ9Gtde-MOEhdXIIwKvfwVNZ0GqXqvc84RVZD2UQ7dqKwzm8osXfV1LndM06cPn9VD72yvNf5u1uq5X7H1OIhB_Z2je4Oixf4qjkFtzHTUJ-4Qjis7BeCCh2sjmWsh7696IsHpqayI07HLqCWM15gq4o6HB3buqu_KrAOTJOFaunsiRI720ViVdmTPWIxGpJcMGix37UErKaBMII3I1x-EidIfLVqWBPXRxULPLq7MpWZ8G0S-kFtYh9ipFTXuNJiY"/>
+<span class="text-sm font-semibold text-slate-700">Kemara</span>
+<svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</div>
+</div>
+</header>
+<!-- END: TopBar -->
+<!-- BEGIN: DashboardContent -->
+<div class="flex-1 overflow-y-auto p-8 space-y-8 bg-slate-50" data-purpose="dashboard-content">
+<div class="flex items-center justify-between">
+<h2 class="text-2xl font-extrabold text-slate-800">Dashboard</h2>
+</div>
+<!-- BEGIN: SummaryCards -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Production Card -->
+<div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100">
+<p class="text-sm font-medium text-blue-600 mb-1">Total Agricultural Production</p>
+<h3 class="text-3xl font-bold text-slate-900 mb-2">1.2 Billion Tons</h3>
+<div class="flex items-center gap-1 text-xs font-bold text-green-600 bg-white/50 w-fit px-2 py-0.5 rounded-full border border-green-100">
+<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" fill-rule="evenodd"></path></svg>
+            +4.5%
+          </div>
+</div>
+<!-- State Card -->
+<div class="bg-green-50/50 p-6 rounded-2xl border border-green-100">
+<p class="text-sm font-medium text-green-600 mb-1">Top Producing State</p>
+<h3 class="text-3xl font-bold text-slate-900 mb-2">Mato Grosso</h3>
+<p class="text-xs font-semibold text-slate-500">35% Share</p>
+</div>
+<!-- Crop Card -->
+<div class="bg-sky-50/50 p-6 rounded-2xl border border-sky-100">
+<p class="text-sm font-medium text-sky-600 mb-1">Most Produced Crop</p>
+<h3 class="text-3xl font-bold text-slate-900 mb-2">Soybeans</h3>
+<p class="text-xs font-semibold text-slate-500">550M Tons</p>
+</div>
+<!-- Growth Card -->
+<div class="bg-emerald-50/50 p-6 rounded-2xl border border-emerald-100">
+<p class="text-sm font-medium text-emerald-600 mb-1">Annual Growth %</p>
+<h3 class="text-3xl font-bold text-slate-900 mb-2">3.8%</h3>
+<div class="flex items-center gap-1 text-xs font-bold text-green-600 bg-white/50 w-fit px-2 py-0.5 rounded-full border border-green-100">
+<svg class="w-3 h-3" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" fill-rule="evenodd"></path></svg>
+            +0.2%
+          </div>
+</div>
+</section>
+<!-- END: SummaryCards -->
+<!-- BEGIN: ChartsSection -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Production Trends Line Chart -->
+<div class="bg-white p-6 rounded-2xl border border-slate-200 lg:col-span-1">
+<h4 class="text-sm font-bold text-slate-800 mb-6">Production Trends Over Time</h4>
+<div class="relative h-48 w-full border-l border-b border-slate-200">
+<!-- Grid Lines Background -->
+<div class="absolute inset-0 chart-grid opacity-20 pointer-events-none"></div>
+<!-- Line Visual Mockup -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none">
+<!-- Area -->
+<path d="M0,180 Q100,160 200,140 T400,100 T600,60 L600,180 L0,180 Z" fill="rgba(59, 130, 246, 0.1)"></path>
+<!-- Lines -->
+<path d="M0,180 Q100,160 200,140 T400,100 T600,60" fill="none" stroke="#2563eb" stroke-width="2"></path>
+<path d="M0,180 Q100,170 200,160 T400,130 T600,100" fill="none" stroke="#60a5fa" stroke-width="2"></path>
+<path d="M0,180 Q100,175 200,165 T400,150 T600,130" fill="none" stroke="#93c5fd" stroke-width="2"></path>
+</svg>
+<!-- X Axis Labels -->
+<div class="absolute -bottom-6 w-full flex justify-between px-2 text-[10px] text-slate-400 font-medium">
+<span>2018</span><span>2019</span><span>2020</span><span>2021</span><span>2022</span><span>2023</span>
+</div>
+<!-- Y Axis Labels -->
+<div class="absolute -left-10 h-full flex flex-col justify-between py-1 text-[10px] text-slate-400 text-right pr-2">
+<span>500M</span><span>400M</span><span>300M</span><span>200M</span><span>100M</span><span>0</span>
+</div>
+</div>
+</div>
+<!-- Regional Comparison Bar Chart -->
+<div class="bg-white p-6 rounded-2xl border border-slate-200 lg:col-span-1">
+<h4 class="text-sm font-bold text-slate-800 mb-6">Regional Comparison</h4>
+<div class="relative h-48 w-full flex items-end justify-around border-l border-b border-slate-200 pb-2">
+<!-- Bars -->
+<div class="w-8 bg-blue-600 rounded-t-sm" style="height: 65%;"></div>
+<div class="w-8 bg-green-500 rounded-t-sm" style="height: 45%;"></div>
+<div class="w-8 bg-blue-700 rounded-t-sm" style="height: 85%;"></div>
+<div class="w-8 bg-emerald-500 rounded-t-sm" style="height: 60%;"></div>
+<div class="w-8 bg-blue-500 rounded-t-sm" style="height: 40%;"></div>
+<!-- X Axis Labels -->
+<div class="absolute -bottom-8 w-full flex justify-around text-[10px] text-slate-400 font-medium text-center">
+<span class="w-8">North</span><span class="w-8">Northeast</span><span class="w-8 leading-tight">Center-West</span><span class="w-8">Southeast</span><span class="w-8">South</span>
+</div>
+<!-- Y Axis Labels -->
+<div class="absolute -left-10 h-full flex flex-col justify-between py-1 text-[10px] text-slate-400 text-right pr-2">
+<span>250M</span><span>200M</span><span>150M</span><span>100M</span><span>50M</span><span>0</span>
+</div>
+</div>
+</div>
+<!-- Production Density Map -->
+<div class="bg-white p-6 rounded-2xl border border-slate-200 lg:col-span-1">
+<h4 class="text-sm font-bold text-slate-800 mb-2">Production Density by State</h4>
+<div class="flex items-center justify-center h-52 relative">
+<!-- Mockup Brazil Map using SVG -->
+<svg class="w-full h-full" viewbox="0 0 200 200">
+<!-- Simple stylized polygons representing Brazil regions -->
+<path class="brazil-map-path" d="M40,20 L120,20 L140,50 L100,80 L30,60 Z" fill="#93c5fd"></path> <!-- North -->
+<path class="brazil-map-path" d="M120,20 L160,30 L180,70 L140,80 L100,70 Z" fill="#10b981"></path> <!-- Northeast -->
+<path class="brazil-map-path" d="M80,80 L130,80 L140,120 L90,130 Z" fill="#2563eb"></path> <!-- Center -->
+<path class="brazil-map-path" d="M140,80 L180,100 L160,150 L130,140 Z" fill="#059669"></path> <!-- Southeast -->
+<path class="brazil-map-path" d="M110,130 L140,140 L130,180 L100,170 Z" fill="#3b82f6"></path> <!-- South -->
+</svg>
+</div>
+</div>
+</section>
+<!-- END: ChartsSection -->
+<!-- BEGIN: TopCropsTable -->
+<section class="bg-white rounded-2xl border border-slate-200 overflow-hidden">
+<div class="p-6 border-b border-slate-100">
+<h4 class="text-sm font-bold text-slate-800">Top Crops</h4>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-slate-50 text-[10px] uppercase tracking-wider font-semibold text-slate-500">
+<th class="px-6 py-3">#</th>
+<th class="px-6 py-3">Crop Name</th>
+<th class="px-6 py-3">Production Volume</th>
+<th class="px-6 py-3 w-1/3">Percentage Share</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100"><!-- Soybean -->
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4 text-sm text-slate-500">1</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Soybean" class="w-6 h-6 rounded-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCF4Yo-T7MVX7umJ5Me28gsjT9f9ybjR4dhaUcNwOg05lpRhaHoz_SWEH0ctU7bkMlLstg2sf3NMn4UbJtRxU4m9RzVxKUqnauos7PkaAA3pcODEoQiMLVzRYWTcoCKc8qf8lYyUBDtWYEEMqIdr2--okXdOkRxxUSfbI6XYBAiG5Rehyffrc2MctIPWcD10pboyD3OFlMZuUzuPJXXUSApJkR4HIpnT5ZaGw8coqEFWS835yRx-mQF4sLXfH2AdUJvVQJhDUD_9ig"/>
+<span class="text-sm font-medium text-slate-700">Soybeans</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 font-medium">1 Billion Tons</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-blue-600 rounded-full" style="width: 50%"></div>
+</div>
+<span class="text-xs font-semibold text-slate-500 w-8">50%</span>
+</div>
+</td>
+</tr>
+<!-- Corn -->
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4 text-sm text-slate-500">2</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Corn" class="w-6 h-6 rounded-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSIe0BzUwKZ8qPSQRAfQeJEPC6n2JiKF7mTL--uJVywdgyg-tuLa2rIuUHN4icMn4D7haXmlFtLZxMBY_A21Is4CqKFBFm4F7u314y63_wSv21keiCZ-MQOTs4wZOnPb3O80uGbVegYD-_m6c44_JQo0W2qxGEqTevSiavhewVsa3sgwjauZiTrIlMFoKcwQnQtPkVl_X_PePChD6DwMit7lmjWmWHzmTsbQsvbx1xWP1nGQf5P1Swh_6xJLncxY60EM-lfpp0e_U"/>
+<span class="text-sm font-medium text-slate-700">Corn</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 font-medium">2250M Tons</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 rounded-full" style="width: 30%"></div>
+</div>
+<span class="text-xs font-semibold text-slate-500 w-8">30%</span>
+</div>
+</td>
+</tr>
+<!-- Sugarcane -->
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4 text-sm text-slate-500">3</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Sugarcane" class="w-6 h-6 rounded-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnrCW29JVzpNQ5yG6bYk2WVCwiZrNGLwBK0nx0VSMFplRHanWm7VRpVT6N70MwqGrQMm2hn9GSpBGmdBn9B-nNarDeq0-wTIrmBdcML4R2WxJ7zzCrei2CXNYWSqFHv2hFgUd5p47U8RdfgzR-Hiz2kSFew7kiFEmHxLWAbmiKSnpq_EIlm0Q6sF077R0yQEPzXDppkBEC3LKXb9nuwu269-PYCQ_FLYl8JWLJkjHA1LaKcv0VMjtsEwFiV7wcdZEhP8SPHXkVa-w"/>
+<span class="text-sm font-medium text-slate-700">Sugarcane</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 font-medium">1280M Tons</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-blue-600 rounded-full" style="width: 12%"></div>
+</div>
+<span class="text-xs font-semibold text-slate-500 w-8">12%</span>
+</div>
+</td>
+</tr>
+<!-- Coffee -->
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4 text-sm text-slate-500">4</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Coffee" class="w-6 h-6 rounded-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwP3QHuQmJ_nLMe5W0fA7Z-Qr7N7iEbkQMt0EdnrHsbTOrNDmQ7aMe1qF0GkHaXZlvcBqpLWiGUXC7eivgXMjxVRwbQ28MzSgXIBy2kH4WL0L-pXbMZaN2dR-s7Owq3pVD6wrfeITVOib3IORY0sR5jYeBtrt2KVcl6d2rM0xNVSq07mHAgQlnzbi1NeuXWAvwalJrSMGKYjz90l46BUmhkliplcPIXF6mhBQ6zPgWgp6Fp5SlGIfFBuLoi44A7_KWjoUWX9i_OMQ"/>
+<span class="text-sm font-medium text-slate-700">Coffee</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 font-medium">550M Tons</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-500 rounded-full" style="width: 12%"></div>
+</div>
+<span class="text-xs font-semibold text-slate-500 w-8">12%</span>
+</div>
+</td>
+</tr>
+<!-- Cotton -->
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4 text-sm text-slate-500">5</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<img alt="Cotton" class="w-6 h-6 rounded-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnny57EZxMf4ercnToaLZCBrc6lL2JAvAAvJuVw-plLu51Wku0V_1J-TT_s6SEQNxoqjuK9BxRGEbSl67a0NvL0O1V07wuqgeIajvxicloqWVkf3BSrn1qoLrjkR05fjNj1L8n_-XjLzq2qGmZdXud14DbahPlEJxn1ifI_NHCaQxP1DvwLLtFd0Uz7Lu7hHHcz1ZJepSU3cZ0DWz6PpHN-PigA4O4XvIqOJBxzF0eq4J89D7kXpiqBL1M7VgeaxefQY7IWY8b1-0"/>
+<span class="text-sm font-medium text-slate-700">Cotton</span>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600 font-medium">550M Tons</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="flex-1 h-1.5 bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-blue-600 rounded-full" style="width: 8%"></div>
+</div>
+<span class="text-xs font-semibold text-slate-500 w-8">8%</span>
+</div>
+</td>
+</tr></tbody>
+</table>
+</div>
+</section>
+<!-- END: TopCropsTable -->
+<!-- BEGIN: Footer -->
+<footer class="text-center py-6 text-[10px] text-slate-400 font-medium" data-purpose="dashboard-footer">
+        AgroVisão Brasil © 2024. Based on IBGE Data.
+      </footer>
+<!-- END: Footer -->
+</div>
+<!-- END: DashboardContent -->
+</main>
+</body></html>

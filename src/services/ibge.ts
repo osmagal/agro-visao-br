@@ -11,20 +11,33 @@ export interface IbgeParams {
 
 export const fetchAgroData = async (params: IbgeParams) => {
     try {
-        const isDev = import.meta.env.DEV;
-        const projectId = import.meta.env.VITE_FIREBASE_PROJECT_ID || "agro-visao-br";
+        const { agregado, periodos, variaveis, localidades, classificacao } = params;
 
-        // Aponta dinamicamente: Emulador se for local, Nuvem se for em Produção
-        const functionUrl = isDev
-            ? `http://127.0.0.1:5001/${projectId}/us-central1/querySidra`
-            : `https://querysidra-zzxxccvv-uc.a.run.app`; // Dica: A url exata aparecerá quando você fizer 'firebase deploy --only functions'
+        // 1. Monta a URL base da API do IBGE
+        let url = `https://servicodados.ibge.gov.br/api/v3/agregados/${agregado}`;
 
-        const response = await axios.get(functionUrl, { params });
+        // 2. Adiciona os parâmetros de rota (Períodos e Variáveis)
+        if (periodos) url += `/periodos/${periodos}`;
+        if (variaveis) url += `/variaveis/${variaveis}`;
 
-        // Retorna apenas os dados para facilitar o binding nos componentes dos Dashboards
-        return response.data.data;
+        // 3. Adiciona os parâmetros de query string (Localidades e Classificação)
+        const queryParams = new URLSearchParams();
+        if (localidades) queryParams.append("localidades", localidades);
+        if (classificacao) queryParams.append("classificacao", classificacao);
+
+        const queryString = queryParams.toString();
+        if (queryString) {
+            url += `?${queryString}`;
+        }
+
+        // 4. Faz a requisição direta ao IBGE pelo navegador do usuário
+        const response = await axios.get(url);
+
+        // 5. Retorna o payload de dados para os componentes de gráfico
+        return response.data;
+
     } catch (error) {
-        console.error("Falha ao buscar dados no BFF AgroVisão:", error);
-        throw error;
+        console.error("Falha ao buscar dados diretamente do IBGE:", error);
+        throw new Error("Não foi possível carregar os dados agrícolas no momento.");
     }
 };
